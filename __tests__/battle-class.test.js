@@ -137,10 +137,3 @@ describe('Battle Class', () => {
     });
   });
 });
-
-/* 
-
-methods: fight 
-reduces hitPoints accordingly
-
-*/
