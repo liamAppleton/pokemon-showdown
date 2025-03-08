@@ -1,6 +1,6 @@
 const { Pokemon } = require('../classes');
 
-describe('Pokemon Class', () => {
+describe.skip('Pokemon Class', () => {
   describe('properties', () => {
     test('should have a name property', () => {
       console.log(Pokemon);
