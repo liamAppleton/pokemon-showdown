@@ -8,6 +8,7 @@ const {
 } = require('../classes');
 
 describe('Battle Class', () => {
+  let battle;
   let player, computer;
   let lopunny, charizard, squirtle;
   let eevee, ninetails, blastoise;
@@ -40,12 +41,22 @@ describe('Battle Class', () => {
 
     player.belt = [pb1, pb2, pb3];
     computer.belt = [pb4, pb5, pb6];
+
+    battle = new Battle(player, computer);
   });
 
   describe('properties', () => {
     test('should have a player property', () => {
-      console.log(player.belt);
-      console.log(computer.belt);
+      expect(battle.player).toEqual(player);
+    });
+    test('should have a computer property', () => {
+      expect(battle.computer).toEqual(computer);
+    });
+    test('should have a playerPokemon property initialised to an empty object', () => {
+      expect(battle.playerPokemon).toEqual({});
+    });
+    test('should have a computerPokemon property initialised to an empty object', () => {
+      expect(battle.computerPokemon).toEqual({});
     });
   });
 });
