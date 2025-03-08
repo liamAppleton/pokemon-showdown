@@ -13,7 +13,6 @@ describe('Battle Class', () => {
   let lopunny, charizard, squirtle;
   let eevee, ninetails, blastoise;
   let pb1, pb2, pb3, pb4, pb5, pb6;
-  let potion1, potion2, potion3;
   beforeEach(() => {
     player = new Trainer('Ash', false);
     computer = new Trainer('Computer', true);
@@ -74,11 +73,52 @@ describe('Battle Class', () => {
         expect(battle.computerPokemon).toEqual(eevee);
       });
     });
+    describe('fight()', () => {
+      test('instances should have a fight property', () => {
+        expect(typeof battle.fight).toBe('function');
+      });
+      test('when passed two normal pokemon should reduce hitPoints of defending pokemon accordingly', () => {
+        battle.selectPokemon(player, 'Lopunny');
+        battle.selectPokemon(computer, 'Eevee');
+
+        const attacker = battle.playerPokemon;
+        const defender = battle.computerPokemon;
+
+        battle.fight(attacker, defender);
+
+        expect(defender.hitPoints).toBe(80);
+      });
+      test('when passed an attacker strong against defender should reduce hitPoints of defending pokemon accordingly', () => {
+        battle.selectPokemon(player, 'Squirtle');
+        battle.selectPokemon(computer, 'Ninetails');
+
+        const attacker = battle.playerPokemon;
+        const defender = battle.computerPokemon;
+
+        battle.fight(attacker, defender);
+
+        expect(defender.hitPoints).toBe(60);
+      });
+      test('when passed an attacker weak against defender should reduce hitPoints of defending pokemon accordingly', () => {
+        battle.selectPokemon(player, 'Charizard');
+        battle.selectPokemon(computer, 'Blastoise');
+
+        const attacker = battle.playerPokemon;
+        const defender = battle.computerPokemon;
+
+        battle.fight(attacker, defender);
+
+        expect(defender.hitPoints).toBe(90);
+      });
+    });
   });
 });
 
 /* 
 
-methods: selectPokemon, fight 
+methods: fight 
+reduces hitPoints accordingly
+removed pokemon from selection if fainted
 
+hasFainted should remove pokemon from belt
 */

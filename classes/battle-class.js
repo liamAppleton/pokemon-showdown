@@ -14,6 +14,14 @@ class Battle {
       this.computerPokemon = selectedPokemon;
     }
   }
+
+  fight(attacker, defender) {
+    const damage = Math.round(
+      attacker.attackDamage * attacker.calculateDamageMultiplier(defender)
+    );
+
+    defender.takeDamage(damage);
+  }
 }
 
 module.exports = Battle;
