@@ -15,6 +15,6 @@ describe('pokemonLookup()', () => {
 describe('deletePokemon()', () => {
   test('should remove input pokemon from input object', () => {
     deletePokemon(pokemon, 'Eevee');
-    expect(pokemon.hasOwnProperty('eevee')).toBe(false);
+    expect(pokemonLookup(pokemon, 'eevee')).toBe(undefined);
   });
 });
