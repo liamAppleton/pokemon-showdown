@@ -1,9 +1,8 @@
 const { Pokemon } = require('../classes');
 
-describe.skip('Pokemon Class', () => {
+describe('Pokemon Class', () => {
   describe('properties', () => {
     test('should have a name property', () => {
-      console.log(Pokemon);
       const pokemon1 = new Pokemon('Mew');
       expect(pokemon1.name).toBe('Mew');
     });
@@ -26,16 +25,28 @@ describe.skip('Pokemon Class', () => {
   });
 
   describe('methods', () => {
+    let pokemon1;
+    beforeEach(() => {
+      pokemon1 = new Pokemon('Mew', 'Tackle', 100, 20);
+    });
     describe('useMove()', () => {
       test('should return attackDamage', () => {
-        const pokemon1 = new Pokemon('Mew', 'Tackle', 100, 20);
         expect(pokemon1.useMove()).toBe(20);
       });
       test("should log pokemon's name and move", () => {
-        const pokemon1 = new Pokemon('Mew', 'Tackle', 100, 20);
         const consoleSpy = jest.spyOn(console, 'log');
         pokemon1.useMove();
         expect(consoleSpy).toHaveBeenCalledWith('Mew used Tackle!');
+      });
+    });
+    describe('takeDamage()', () => {
+      test('should reduce hitPoints by passed damage value', () => {
+        pokemon1.takeDamage(10);
+        expect(pokemon1.hitPoints).toBe(90);
+      });
+      test('should not change maxHitPoints', () => {
+        pokemon1.takeDamage(10);
+        expect(pokemon1.maxHitPoints).toBe(100);
       });
     });
   });

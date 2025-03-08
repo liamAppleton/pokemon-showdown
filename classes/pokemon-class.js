@@ -11,6 +11,10 @@ class Pokemon {
     console.log(`${this.name} used ${this.move}!`);
     return this.attackDamage;
   }
+
+  takeDamage(damage) {
+    this.hitPoints -= damage;
+  }
 }
 
 module.exports = Pokemon;
