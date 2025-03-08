@@ -36,12 +36,16 @@ class WaterPokemon extends Pokemon {
     this.type = 'Water';
   }
 
-  effectiveAgainst(pokemon) {
-    return null;
-  }
-
-  weakTo(pokemon) {
-    return null;
+  calculateDamageMultiplier(pokemon) {
+    switch (pokemon.type) {
+      case 'Fire':
+        return 2;
+      case 'Water':
+        return 0.5;
+      case 'Grass':
+        return 0.5;
+    }
+    return 1;
   }
 }
 
@@ -51,12 +55,16 @@ class GrassPokemon extends Pokemon {
     this.type = 'Grass';
   }
 
-  effectiveAgainst(pokemon) {
-    return null;
-  }
-
-  weakTo(pokemon) {
-    return null;
+  calculateDamageMultiplier(pokemon) {
+    switch (pokemon.type) {
+      case 'Water':
+        return 2;
+      case 'Fire':
+        return 0.5;
+      case 'Grass':
+        return 0.5;
+    }
+    return 1;
   }
 }
 
@@ -66,12 +74,18 @@ class ElectricPokemon extends Pokemon {
     this.type = 'Electric';
   }
 
-  effectiveAgainst(pokemon) {
-    return null;
-  }
-
-  weakTo(pokemon) {
-    return null;
+  calculateDamageMultiplier(pokemon) {
+    switch (pokemon.type) {
+      case 'Water':
+        return 2;
+      case 'Flying':
+        return 2;
+      case 'Electric':
+        return 0.5;
+      case 'Grass':
+        return 0.5;
+    }
+    return 1;
   }
 }
 
@@ -81,12 +95,16 @@ class FlyingPokemon extends Pokemon {
     this.type = 'Flying';
   }
 
-  effectiveAgainst(pokemon) {
-    return null;
-  }
-
-  weakTo(pokemon) {
-    return null;
+  calculateDamageMultiplier(pokemon) {
+    switch (pokemon.type) {
+      case 'Grass':
+        return 2;
+      case 'Fighting':
+        return 2;
+      case 'Electric':
+        return 0.5;
+    }
+    return 1;
   }
 }
 
@@ -96,12 +114,14 @@ class FightingPokemon extends Pokemon {
     this.type = 'Fighting';
   }
 
-  effectiveAgainst(pokemon) {
-    return null;
-  }
-
-  weakTo(pokemon) {
-    return null;
+  calculateDamageMultiplier(pokemon) {
+    switch (pokemon.type) {
+      case 'Normal':
+        return 2;
+      case 'Flying':
+        return 0.5;
+    }
+    return 1;
   }
 }
 module.exports = {
