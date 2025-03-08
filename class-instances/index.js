@@ -41,6 +41,20 @@ const {
   largePotion,
   maxPotion,
 } = require('./potion-instances');
+const {
+  pb1,
+  pb2,
+  pb3,
+  pb4,
+  pb5,
+  pb6,
+  pb7,
+  pb8,
+  pb9,
+  pb10,
+  pb11,
+  pb12,
+} = require('./pokeball-instances');
 
 module.exports = {
   eevee,
@@ -82,4 +96,16 @@ module.exports = {
   mediumPotion,
   largePotion,
   maxPotion,
+  pb1,
+  pb2,
+  pb3,
+  pb4,
+  pb5,
+  pb6,
+  pb7,
+  pb8,
+  pb9,
+  pb10,
+  pb11,
+  pb12,
 };
