@@ -6,9 +6,9 @@ const pokemonLookup = (pokemonList, pokemonName) => {
   }
 };
 
-const deletePokemon = (pokemonList, pokemonName) => {
-  for (const [key, _] of Object.entries(pokemonList)) {
-    if (key === pokemonName.toLowerCase()) delete pokemonList[key];
+const deletePokemon = (pokemonName) => {
+  for (const [key, _] of Object.entries(pokemon)) {
+    if (key === pokemonName.toLowerCase()) delete pokemon[key];
   }
 };
 

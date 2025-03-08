@@ -1,5 +1,5 @@
 const inquirer = require('inquirer');
-const { pokemonNameList, pokemon } = require('./game-data');
+const { pokemonNameList } = require('./game-data');
 const { deletePokemon } = require('./utils');
 
 const initialSelection = async () => {
@@ -11,7 +11,7 @@ const initialSelection = async () => {
     loop: true,
   };
   return inquirer.prompt(selectionQuestion).then(({ selectedPokemon }) => {
-    deletePokemon(pokemon, selectedPokemon);
+    deletePokemon(selectedPokemon);
     const index = pokemonNameList.indexOf(selectedPokemon);
     pokemonNameList.splice(index, 1);
   });

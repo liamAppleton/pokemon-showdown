@@ -14,7 +14,7 @@ describe('pokemonLookup()', () => {
 
 describe('deletePokemon()', () => {
   test('should remove input pokemon from input object', () => {
-    deletePokemon(pokemon, 'Eevee');
+    deletePokemon('Eevee');
     expect(pokemonLookup(pokemon, 'eevee')).toBe(undefined);
   });
 });
