@@ -8,7 +8,9 @@ const initialSelection = async () => {
     choices: [1, 2, 3],
     loop: true,
   };
-  return inquirer.prompt(selectionQuestion);
+  return inquirer
+    .prompt(selectionQuestion)
+    .then((pokemon) => console.log(pokemon));
 };
 
 const main = async () => {

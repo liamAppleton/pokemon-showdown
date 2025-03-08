@@ -1,4 +1,4 @@
-const Potion = require('./potion-class');
+const { Potion } = require('../classes');
 
 const smallPotion = new Potion('Small Potion', 20);
 const mediumPotion = new Potion('Medium Potion', 50);

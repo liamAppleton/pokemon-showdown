@@ -57,6 +57,25 @@ const {
 } = require('./pokeball-instances');
 
 module.exports = {
+  smallPotion,
+  mediumPotion,
+  largePotion,
+  maxPotion,
+  pb1,
+  pb2,
+  pb3,
+  pb4,
+  pb5,
+  pb6,
+  pb7,
+  pb8,
+  pb9,
+  pb10,
+  pb11,
+  pb12,
+};
+
+module.exports.pokemon = {
   eevee,
   snorlax,
   pidgey,
@@ -92,20 +111,4 @@ module.exports = {
   hitmonchan,
   mankey,
   terrakion,
-  smallPotion,
-  mediumPotion,
-  largePotion,
-  maxPotion,
-  pb1,
-  pb2,
-  pb3,
-  pb4,
-  pb5,
-  pb6,
-  pb7,
-  pb8,
-  pb9,
-  pb10,
-  pb11,
-  pb12,
 };
