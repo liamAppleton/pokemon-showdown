@@ -10,7 +10,6 @@ const {
 } = require('../classes');
 
 let lopunny, charizard, squirtle, leafeon, jolteon, fearow, machamp;
-
 beforeEach(() => {
   lopunny = new NormalPokemon('Lopunny', 'Tackle', 100, 20);
   charizard = new FirePokemon('Charizard', 'Ember', 100, 20);

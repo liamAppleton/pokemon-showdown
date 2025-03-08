@@ -8,6 +8,7 @@ const {
   FlyingPokemon,
   FightingPokemon,
 } = require('./pokemon-types-class');
+const Pokeball = require('./pokeball-class');
 
 module.exports = {
   Pokemon,
@@ -18,4 +19,5 @@ module.exports = {
   ElectricPokemon,
   FlyingPokemon,
   FightingPokemon,
+  Pokeball,
 };
