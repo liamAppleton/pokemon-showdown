@@ -36,13 +36,3 @@ describe('Pokeball Class', () => {
     });
   });
 });
-
-/*
-store an instance of pokemon class
-properties: storedPokemon
-
-methods:
-    - catch
-    - throw
-    - viewPokemon
-*/
