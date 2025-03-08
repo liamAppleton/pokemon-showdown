@@ -1,0 +1,23 @@
+{
+  "name": "pokemon-showdown",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liamAppleton/pokemon-showdown.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/liamAppleton/pokemon-showdown/issues"
+  },
+  "homepage": "https://github.com/liamAppleton/pokemon-showdown#readme",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
