@@ -124,6 +124,7 @@ class FightingPokemon extends Pokemon {
     return 1;
   }
 }
+
 module.exports = {
   NormalPokemon,
   FirePokemon,
