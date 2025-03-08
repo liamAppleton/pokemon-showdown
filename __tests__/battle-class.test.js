@@ -110,13 +110,7 @@ describe('Battle Class', () => {
 
         expect(defender.hitPoints).toBe(90);
       });
-      test('should ');
-    });
-    describe('_removeFaintedPokemon', () => {
-      test('instances should have a _removeFaintedPokemon method', () => {
-        expect(typeof battle.removeFaintedPokemon).toBe('function');
-      });
-      test("should remove any pokemon with hitPoints less than 0 from a trainer's belt", () => {
+      test("if defending pokemon faints it should be removed from the trainer's belt", () => {
         battle.selectPokemon(player, 'Charizard');
         battle.selectPokemon(computer, 'Blastoise');
 
@@ -127,6 +121,18 @@ describe('Battle Class', () => {
         battle.fight(attacker, defender, computer);
 
         expect(computer.belt.length).toBe(2);
+      });
+      test("if defending pokemon faints it should be removed from the trainer's belt (computer wins)", () => {
+        battle.selectPokemon(player, 'Charizard');
+        battle.selectPokemon(computer, 'Blastoise');
+
+        const attacker = battle.computerPokemon;
+        const defender = battle.playerPokemon;
+        defender.takeDamage(90);
+
+        battle.fight(attacker, defender, player);
+
+        expect(player.belt.length).toBe(2);
       });
     });
   });
