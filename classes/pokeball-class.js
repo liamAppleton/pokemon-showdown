@@ -6,6 +6,10 @@ class Pokeball {
   catch(pokemon) {
     this.storedPokemon = pokemon;
   }
+
+  throw() {
+    return this.storedPokemon;
+  }
 }
 
 module.exports = Pokeball;

@@ -28,6 +28,12 @@ describe('Pokeball Class', () => {
         expect(pokeball1.storedPokemon instanceof Pokemon).toBe(true);
       });
     });
+    describe('throw()', () => {
+      test('should return the stored pokemon object', () => {
+        pokeball1.catch(lopunny);
+        expect(pokeball1.throw()).toEqual(lopunny);
+      });
+    });
   });
 });
 
