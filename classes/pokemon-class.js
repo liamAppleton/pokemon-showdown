@@ -15,6 +15,10 @@ class Pokemon {
   takeDamage(damage) {
     this.hitPoints -= damage;
   }
+
+  hasFainted() {
+    return this.hitPoints <= 0;
+  }
 }
 
 module.exports = Pokemon;

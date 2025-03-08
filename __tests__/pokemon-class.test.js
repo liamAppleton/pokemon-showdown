@@ -55,5 +55,14 @@ describe('Pokemon Class', () => {
         expect(pokemon1.maxHitPoints).toBe(100);
       });
     });
+    describe('hasFainted()', () => {
+      test('instances of pokemon should have a hasFainted method', () => {
+        expect(typeof pokemon1.hasFainted).toBe('function');
+      });
+      test("should return true is passed pokemon's hitPoints are less than or equal to 0", () => {
+        pokemon1.takeDamage(110);
+        expect(pokemon1.hasFainted()).toBe(true);
+      });
+    });
   });
 });
