@@ -23,11 +23,11 @@ class Battle {
     defender.takeDamage(damage);
 
     if (defender.hasFainted()) {
-      this.removeFaintedPokemon(defendingTrainer);
+      this._removeFaintedPokemon(defendingTrainer);
     }
   }
 
-  removeFaintedPokemon(trainer) {
+  _removeFaintedPokemon(trainer) {
     trainer.belt = trainer.belt.filter(
       ({ storedPokemon }) => !storedPokemon.hasFainted()
     );

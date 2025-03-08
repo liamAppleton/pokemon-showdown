@@ -110,9 +110,10 @@ describe('Battle Class', () => {
 
         expect(defender.hitPoints).toBe(90);
       });
+      test('should ');
     });
-    describe('removeFaintedPokemon', () => {
-      test('instances should have a removeFaintedPokemon method', () => {
+    describe('_removeFaintedPokemon', () => {
+      test('instances should have a _removeFaintedPokemon method', () => {
         expect(typeof battle.removeFaintedPokemon).toBe('function');
       });
       test("should remove any pokemon with hitPoints less than 0 from a trainer's belt", () => {
