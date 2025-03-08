@@ -1,9 +1,3 @@
-const createPokemonNameList = (pokemonInstances) => {
-  const arr = [];
-  for (let [key, value] of Object.entries(pokemonInstances)) {
-    arr.push(key);
-  }
-  return arr;
-};
+const pokemonLookup = () => {};
 
-module.exports = { createPokemonNameList };
+module.exports = {};
