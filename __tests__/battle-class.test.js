@@ -51,11 +51,11 @@ describe('Battle Class', () => {
     test('should have a computer property', () => {
       expect(battle.computer).toEqual(computer);
     });
-    test('should have a playerPokemon property initialised to an empty object', () => {
-      expect(battle.playerPokemon).toEqual({});
+    test('should have a playerPokemon property initialised to an object with a trainer key set to player', () => {
+      expect(battle.playerPokemon).toEqual({ trainer: 'player' });
     });
-    test('should have a computerPokemon property initialised to an empty object', () => {
-      expect(battle.computerPokemon).toEqual({});
+    test('should have a computerPokemon property initialised to an object with a trainer key set to computer', () => {
+      expect(battle.computerPokemon).toEqual({ trainer: 'computer' });
     });
   });
 
@@ -64,13 +64,19 @@ describe('Battle Class', () => {
       test('instances should have a selectPokemon property', () => {
         expect(typeof battle.selectPokemon).toBe('function');
       });
-      test('should add passed pokemon to playerPokemon if player instance passed', () => {
+      test('should add passed pokemon to playerPokemon on a key of selectedPokemon if player passed to method', () => {
         battle.selectPokemon(player, 'Lopunny');
-        expect(battle.playerPokemon).toEqual(lopunny);
+        expect(battle.playerPokemon).toEqual({
+          trainer: 'player',
+          selectedPokemon: lopunny,
+        });
       });
-      test('should add passed pokemon to computerPokemon if computer instance passed', () => {
+      test('should add passed pokemon to computerPokemon on a key of selectedPokemon if computer passed to method', () => {
         battle.selectPokemon(computer, 'Eevee');
-        expect(battle.computerPokemon).toEqual(eevee);
+        expect(battle.computerPokemon).toEqual({
+          trainer: 'computer',
+          selectedPokemon: eevee,
+        });
       });
     });
     describe('fight()', () => {
@@ -86,7 +92,7 @@ describe('Battle Class', () => {
 
         battle.fight(attacker, defender);
 
-        expect(defender.hitPoints).toBe(80);
+        expect(defender.selectedPokemon.hitPoints).toBe(80);
       });
       test('when passed an attacker strong against defender should reduce hitPoints of defending pokemon accordingly', () => {
         battle.selectPokemon(player, 'Squirtle');
@@ -97,7 +103,7 @@ describe('Battle Class', () => {
 
         battle.fight(attacker, defender);
 
-        expect(defender.hitPoints).toBe(60);
+        expect(defender.selectedPokemon.hitPoints).toBe(60);
       });
       test('when passed an attacker weak against defender should reduce hitPoints of defending pokemon accordingly', () => {
         battle.selectPokemon(player, 'Charizard');
@@ -108,7 +114,24 @@ describe('Battle Class', () => {
 
         battle.fight(attacker, defender);
 
-        expect(defender.hitPoints).toBe(90);
+        expect(defender.selectedPokemon.hitPoints).toBe(90);
+      });
+      test('should remove fainted pokemon from corresponding trainers belt', () => {
+        battle.selectPokemon(player, 'Charizard');
+        battle.selectPokemon(computer, 'Blastoise');
+
+        const attacker = battle.playerPokemon;
+        const defender = battle.computerPokemon;
+        defender.selectedPokemon.takeDamage(90);
+
+        battle.fight(attacker, defender);
+
+        expect(
+          computer.belt.find(
+            (pokeball) =>
+              pokeball.storedPokemon.name === defender.selectedPokemon.name
+          )
+        ).toBe(undefined);
       });
     });
   });
