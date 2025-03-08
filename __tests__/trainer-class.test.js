@@ -3,6 +3,7 @@ const {
   FirePokemon,
   WaterPokemon,
   Pokeball,
+  Potion,
   Trainer,
 } = require('../classes');
 
@@ -29,6 +30,7 @@ describe('Trainer Class', () => {
   describe('methods', () => {
     let trainer1, lopunny, charizard, squirtle;
     let pb1, pb2, pb3;
+    let potion1, potion2;
     beforeEach(() => {
       trainer1 = new Trainer('Ash');
 
@@ -45,6 +47,12 @@ describe('Trainer Class', () => {
       pb3.catch(squirtle);
 
       trainer1.belt = [pb1, pb2, pb3];
+
+      potion1 = new Potion('Hyper Potion', 50);
+      potion2 = new Potion('Minor Healing Potion', 20);
+      potion3 = new Potion('Healing Potion', 30);
+
+      trainer1.bag = [potion1, potion2, potion3];
     });
 
     describe('releasePokemon()', () => {
@@ -55,11 +63,78 @@ describe('Trainer Class', () => {
         expect(trainer1.releasePokemon('Lopunny')).toEqual(lopunny);
       });
     });
+
+    describe('usePotion()', () => {
+      test('instances should have a usePotion method', () => {
+        expect(typeof trainer1.usePotion).toBe('function');
+      });
+      test('should restore correct amount of hitPoints to passed pokemon', () => {
+        const lopunny = pb1.throw();
+        const charizard = pb2.throw();
+
+        lopunny.takeDamage(80);
+        trainer1.usePotion('Hyper Potion', lopunny);
+
+        charizard.takeDamage(80);
+        trainer1.usePotion('Minor Healing Potion', charizard);
+
+        expect(lopunny.hitPoints).toBe(70);
+        expect(charizard.hitPoints).toBe(40);
+      });
+      test('should remove potion from trainer bag', () => {
+        const lopunny = pb1.throw();
+        const charizard = pb2.throw();
+
+        lopunny.takeDamage(80);
+        trainer1.usePotion('Hyper Potion', lopunny);
+
+        charizard.takeDamage(80);
+        trainer1.usePotion('Minor Healing Potion', charizard);
+
+        expect(trainer1.bag.find((pot) => pot.name === 'Hyper Potion')).toBe(
+          undefined
+        );
+        expect(
+          trainer1.bag.find((pot) => pot.name === 'Minor Healing Potion')
+        ).toBe(undefined);
+      });
+      test('restores hitPoints correctly when alternating indexes (0, 2) of potions in bag are used', () => {
+        const lopunny = pb1.throw();
+        const charizard = pb2.throw();
+
+        lopunny.takeDamage(80);
+        trainer1.usePotion('Hyper Potion', lopunny);
+
+        charizard.takeDamage(80);
+        trainer1.usePotion('Healing Potion', charizard);
+
+        expect(lopunny.hitPoints).toBe(70);
+        expect(charizard.hitPoints).toBe(50);
+      });
+
+      test('removes used potions when alternating indexes (0, 2) of potions in bag are used', () => {
+        const lopunny = pb1.throw();
+        const charizard = pb2.throw();
+
+        lopunny.takeDamage(80);
+        trainer1.usePotion('Hyper Potion', lopunny);
+
+        charizard.takeDamage(80);
+        trainer1.usePotion('Healing Potion', charizard);
+
+        expect(trainer1.bag.find((pot) => pot.name === 'Hyper Potion')).toBe(
+          undefined
+        );
+        expect(trainer1.bag.find((pot) => pot.name === 'Healing Potion')).toBe(
+          undefined
+        );
+      });
+    });
   });
 });
 
 /*
-methods: releasePokemon, usePotion
+methods: usePotion
 
 
 */

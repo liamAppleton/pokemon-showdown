@@ -11,6 +11,13 @@ class Trainer {
       return pokeball.storedPokemon.name === pokemon;
     }).storedPokemon;
   }
+
+  usePotion(selectedPotion, pokemon) {
+    const potion = this.bag.find((pot) => pot.name === selectedPotion);
+    const index = this.bag.indexOf(potion);
+    potion.use(pokemon);
+    this.bag.splice(index, 1);
+  }
 }
 
 module.exports = Trainer;
