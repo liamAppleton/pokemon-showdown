@@ -10,6 +10,7 @@ const {
 } = require('./pokemon-types-class');
 const Pokeball = require('./pokeball-class');
 const Potion = require('./potion-class');
+const Trainer = require('./trainer-class');
 
 module.exports = {
   Pokemon,
@@ -22,4 +23,5 @@ module.exports = {
   FightingPokemon,
   Pokeball,
   Potion,
+  Trainer,
 };

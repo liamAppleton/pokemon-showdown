@@ -5,11 +5,9 @@ class Potion {
   }
 
   use(pokemon) {
-    const hitPointsAfterRestore = (pokemon.hitPoints += this.restores);
-    if (hitPointsAfterRestore > pokemon.maxHitPoints) {
+    pokemon.hitPoints += this.restores;
+    if (pokemon.hitPoints > pokemon.maxHitPoints) {
       pokemon.hitPoints = pokemon.maxHitPoints;
-    } else {
-      pokemon.hitPoints = hitPointsAfterRestore;
     }
   }
 }

@@ -36,8 +36,3 @@ describe('Potion Class', () => {
     });
   });
 });
-
-/*
-properties: name, healAmount
-methods: use()
-*/
