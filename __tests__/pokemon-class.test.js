@@ -1,6 +1,6 @@
 const { Pokemon } = require('../classes');
 
-describe.skip('Pokemon Class', () => {
+describe('Pokemon Class', () => {
   describe('properties', () => {
     test('should have a name property', () => {
       const pokemon1 = new Pokemon('Mew');
@@ -30,6 +30,9 @@ describe.skip('Pokemon Class', () => {
       pokemon1 = new Pokemon('Mew', 'Tackle', 100, 20);
     });
     describe('useMove()', () => {
+      test('instances of pokemon should have a useMove method', () => {
+        expect(typeof pokemon1.useMove).toBe('function');
+      });
       test('should return attackDamage', () => {
         expect(pokemon1.useMove()).toBe(20);
       });
@@ -40,6 +43,9 @@ describe.skip('Pokemon Class', () => {
       });
     });
     describe('takeDamage()', () => {
+      test('instances of pokemon should have a takeDamage method', () => {
+        expect(typeof pokemon1.takeDamage).toBe('function');
+      });
       test('should reduce hitPoints by passed damage value', () => {
         pokemon1.takeDamage(10);
         expect(pokemon1.hitPoints).toBe(90);

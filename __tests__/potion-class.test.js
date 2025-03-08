@@ -11,6 +11,12 @@ describe('Potion Class', () => {
       expect(potion1.restores).toBe(50);
     });
   });
+
+  describe('methods', () => {
+    describe('use()', () => {
+      test('should');
+    });
+  });
 });
 
 /*

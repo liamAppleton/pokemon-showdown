@@ -33,6 +33,9 @@ describe('NormalPokemon Class', () => {
 
   describe('methods', () => {
     describe('calculateDamageMultiplier()', () => {
+      test('instances should have a calculateDamageMultiplier method', () => {
+        expect(typeof lopunny.calculateDamageMultiplier).toBe('function');
+      });
       test('should return 1 when passed any pokemon', () => {
         expect(lopunny.calculateDamageMultiplier(leafeon)).toBe(1);
       });
@@ -53,6 +56,9 @@ describe('FirePokemon Class', () => {
 
   describe('methods', () => {
     describe('calculateDamageMultiplier()', () => {
+      test('instances should have a calculateDamageMultiplier method', () => {
+        expect(typeof charizard.calculateDamageMultiplier).toBe('function');
+      });
       test('should return 2 when passed a grass pokemon', () => {
         expect(charizard.calculateDamageMultiplier(leafeon)).toBe(2);
       });
@@ -80,6 +86,9 @@ describe('WaterPokemon Class', () => {
 
   describe('methods', () => {
     describe('calculateDamageMultiplier()', () => {
+      test('instances should have a calculateDamageMultiplier method', () => {
+        expect(typeof squirtle.calculateDamageMultiplier).toBe('function');
+      });
       test('should return 2 when passed a fire pokemon', () => {
         expect(squirtle.calculateDamageMultiplier(charizard)).toBe(2);
       });
@@ -107,6 +116,9 @@ describe('GrassPokemon Class', () => {
 
   describe('methods', () => {
     describe('calculateDamageMultiplier()', () => {
+      test('instances should have a calculateDamageMultiplier method', () => {
+        expect(typeof leafeon.calculateDamageMultiplier).toBe('function');
+      });
       test('should return 2 when passed a water pokemon', () => {
         expect(leafeon.calculateDamageMultiplier(squirtle)).toBe(2);
       });
@@ -134,6 +146,9 @@ describe('ElectricPokemon Class', () => {
 
   describe('methods', () => {
     describe('calculateDamageMultiplier()', () => {
+      test('instances should have a calculateDamageMultiplier method', () => {
+        expect(typeof jolteon.calculateDamageMultiplier).toBe('function');
+      });
       test('should return 2 when passed a water or flying pokemon', () => {
         expect(jolteon.calculateDamageMultiplier(squirtle)).toBe(2);
         expect(jolteon.calculateDamageMultiplier(fearow)).toBe(2);
@@ -162,6 +177,9 @@ describe('FlyingPokemon Class', () => {
 
   describe('methods', () => {
     describe('calculateDamageMultiplier()', () => {
+      test('instances should have a calculateDamageMultiplier method', () => {
+        expect(typeof fearow.calculateDamageMultiplier).toBe('function');
+      });
       test('should return 2 when passed a grass or fighting pokemon', () => {
         expect(fearow.calculateDamageMultiplier(leafeon)).toBe(2);
         expect(fearow.calculateDamageMultiplier(machamp)).toBe(2);
@@ -189,6 +207,9 @@ describe('FightingPokemon Class', () => {
 
   describe('methods', () => {
     describe('calculateDamageMultiplier()', () => {
+      test('instances should have a calculateDamageMultiplier method', () => {
+        expect(typeof machamp.calculateDamageMultiplier).toBe('function');
+      });
       test('should return 2 when passed a normal pokemon', () => {
         expect(machamp.calculateDamageMultiplier(lopunny)).toBe(2);
       });
