@@ -5,6 +5,15 @@ class Battle {
     this.playerPokemon = {};
     this.computerPokemon = {};
   }
+
+  selectPokemon(trainer, pokemon) {
+    const selectedPokemon = trainer.releasePokemon(pokemon);
+    if (!trainer.isComputer) {
+      this.playerPokemon = selectedPokemon;
+    } else {
+      this.computerPokemon = selectedPokemon;
+    }
+  }
 }
 
 module.exports = Battle;

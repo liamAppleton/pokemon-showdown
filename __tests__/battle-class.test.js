@@ -59,10 +59,26 @@ describe('Battle Class', () => {
       expect(battle.computerPokemon).toEqual({});
     });
   });
+
+  describe('methods', () => {
+    describe('selectPokemon()', () => {
+      test('instances should have a selectPokemon property', () => {
+        expect(typeof battle.selectPokemon).toBe('function');
+      });
+      test('should add passed pokemon to playerPokemon if player instance passed', () => {
+        battle.selectPokemon(player, 'Lopunny');
+        expect(battle.playerPokemon).toEqual(lopunny);
+      });
+      test('should add passed pokemon to computerPokemon if computer instance passed', () => {
+        battle.selectPokemon(computer, 'Eevee');
+        expect(battle.computerPokemon).toEqual(eevee);
+      });
+    });
+  });
 });
 
 /* 
-properties: player, computer, playerPokemon, computerPokemon
-methods: fight
+
+methods: selectPokemon, fight 
 
 */
