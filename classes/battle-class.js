@@ -23,13 +23,20 @@ class Battle {
     );
 
     def.takeDamage(damage);
-
+    // ! this logic is a joke and needs refactoring &/or extracting into a function
     if (defender.trainer === 'computer' && def.hasFainted()) {
       const pokemon = this.computer.belt.find(({ storedPokemon }) => {
         return storedPokemon.name === def.name;
       });
       const index = this.computer.belt.indexOf(pokemon);
       this.computer.belt.splice(index, 1);
+    }
+    if (defender.trainer === 'player' && def.hasFainted()) {
+      const pokemon = this.player.belt.find(({ storedPokemon }) => {
+        return storedPokemon.name === def.name;
+      });
+      const index = this.player.belt.indexOf(pokemon);
+      this.player.belt.splice(index, 1);
     }
   }
 }

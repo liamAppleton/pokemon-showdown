@@ -133,6 +133,23 @@ describe('Battle Class', () => {
           )
         ).toBe(undefined);
       });
+      test('should remove fainted pokemon from corresponding trainers belt (computer wins)', () => {
+        battle.selectPokemon(player, 'Charizard');
+        battle.selectPokemon(computer, 'Blastoise');
+
+        const attacker = battle.computerPokemon;
+        const defender = battle.playerPokemon;
+        defender.selectedPokemon.takeDamage(90);
+
+        battle.fight(attacker, defender);
+
+        expect(
+          computer.belt.find(
+            (pokeball) =>
+              pokeball.storedPokemon.name === defender.selectedPokemon.name
+          )
+        ).toBe(undefined);
+      });
     });
   });
 });
