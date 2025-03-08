@@ -1,5 +1,5 @@
 const { pokemon } = require('../class-instances');
-const { pokemonLookup } = require('../utils');
+const { pokemonLookup, deletePokemon } = require('../utils');
 
 describe('pokemonLookup()', () => {
   test('should return a pokemon instance with same name as input', () => {
@@ -9,5 +9,12 @@ describe('pokemonLookup()', () => {
     const inputCopy = { ...pokemon };
     pokemonLookup(pokemon, 'Eevee');
     expect(pokemon).toEqual(inputCopy);
+  });
+});
+
+describe('deletePokemon()', () => {
+  test('should remove input pokemon from input object', () => {
+    deletePokemon(pokemon, 'Eevee');
+    expect(pokemon.hasOwnProperty('eevee')).toBe(false);
   });
 });

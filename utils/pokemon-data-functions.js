@@ -1,7 +1,13 @@
 const pokemonLookup = (pokemonList, pokemonName) => {
-  for (const [key, value] of Object.entries(pokemonList)) {
+  for (const [key, _] of Object.entries(pokemonList)) {
     if (key === pokemonName.toLowerCase()) return pokemonList[key];
   }
 };
 
-module.exports = { pokemonLookup };
+const deletePokemon = (pokemonList, pokemonName) => {
+  for (const [key, _] of Object.entries(pokemonList)) {
+    if (key === pokemonName.toLowerCase()) delete pokemonList[key];
+  }
+};
+
+module.exports = { pokemonLookup, deletePokemon };

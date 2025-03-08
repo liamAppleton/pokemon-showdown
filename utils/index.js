@@ -1,3 +1,3 @@
-const { pokemonLookup } = require('./pokemon-data-functions');
+const { pokemonLookup, deletePokemon } = require('./pokemon-data-functions');
 
-module.exports = { pokemonLookup };
+module.exports = { pokemonLookup, deletePokemon };
