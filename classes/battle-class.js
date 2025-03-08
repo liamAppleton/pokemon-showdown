@@ -2,42 +2,35 @@ class Battle {
   constructor(player, computer) {
     this.player = player;
     this.computer = computer;
-    this.playerPokemon = { trainer: 'player' };
-    this.computerPokemon = { trainer: 'computer' };
+    this.playerPokemon = {};
+    this.computerPokemon = {};
   }
 
   selectPokemon(trainer, pokemon) {
     const selectedPokemon = trainer.releasePokemon(pokemon);
     if (!trainer.isComputer) {
-      this.playerPokemon.selectedPokemon = selectedPokemon;
+      this.playerPokemon = selectedPokemon;
     } else {
-      this.computerPokemon.selectedPokemon = selectedPokemon;
+      this.computerPokemon = selectedPokemon;
     }
   }
 
-  fight(attacker, defender) {
-    const { selectedPokemon: att } = attacker;
-    const { selectedPokemon: def } = defender;
+  fight(attacker, defender, defendingTrainer) {
     const damage = Math.round(
-      att.attackDamage * att.calculateDamageMultiplier(def)
+      attacker.attackDamage * attacker.calculateDamageMultiplier(defender)
     );
 
-    def.takeDamage(damage);
-    // ! this logic is a joke and needs refactoring &/or extracting into a function
-    if (defender.trainer === 'computer' && def.hasFainted()) {
-      const pokemon = this.computer.belt.find(({ storedPokemon }) => {
-        return storedPokemon.name === def.name;
-      });
-      const index = this.computer.belt.indexOf(pokemon);
-      this.computer.belt.splice(index, 1);
+    defender.takeDamage(damage);
+
+    if (defender.hasFainted()) {
+      this.removeFaintedPokemon(defendingTrainer);
     }
-    if (defender.trainer === 'player' && def.hasFainted()) {
-      const pokemon = this.player.belt.find(({ storedPokemon }) => {
-        return storedPokemon.name === def.name;
-      });
-      const index = this.player.belt.indexOf(pokemon);
-      this.player.belt.splice(index, 1);
-    }
+  }
+
+  removeFaintedPokemon(trainer) {
+    trainer.belt = trainer.belt.filter(
+      ({ storedPokemon }) => !storedPokemon.hasFainted()
+    );
   }
 }
 
