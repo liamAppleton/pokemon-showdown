@@ -1,37 +1,5 @@
-const {
-  eevee,
-  snorlax,
-  pidgey,
-  meowth,
-  regigigas,
-  charmander,
-  vulpix,
-  moltres,
-  ponyta,
-  magmar,
-  squirtle,
-  psyduck,
-  poliwag,
-  kyogre,
-  starmie,
-  bulbasaur,
-  celebi,
-  bellsprout,
-  exeggcute,
-  tangela,
-  pikachu,
-  zapdos,
-  magnemite,
-  electabuzz,
-  jolteon,
-  pidgeotto,
-  spearow,
-  zubat,
-  lugia,
-  aerodactyl,
-  machop,
-  hitmonlee,
-  hitmonchan,
-  mankey,
-  terrakion,
-} = require('./class-instances');
+const { pokemon } = require('./class-instances');
+const { createPokemonNameList } = require('./utils');
+
+const pokemonNameList = createPokemonNameList(pokemon);
+console.log(pokemonNameList);
