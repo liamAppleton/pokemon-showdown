@@ -11,6 +11,7 @@ const {
 const Pokeball = require('./pokeball-class');
 const Potion = require('./potion-class');
 const Trainer = require('./trainer-class');
+const Battle = require('./battle-class');
 
 module.exports = {
   Pokemon,
@@ -24,4 +25,5 @@ module.exports = {
   Pokeball,
   Potion,
   Trainer,
+  Battle,
 };

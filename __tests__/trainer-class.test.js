@@ -30,7 +30,7 @@ describe('Trainer Class', () => {
   describe('methods', () => {
     let trainer1, lopunny, charizard, squirtle;
     let pb1, pb2, pb3;
-    let potion1, potion2;
+    let potion1, potion2, potion3;
     beforeEach(() => {
       trainer1 = new Trainer('Ash');
 
@@ -132,9 +132,3 @@ describe('Trainer Class', () => {
     });
   });
 });
-
-/*
-methods: usePotion
-
-
-*/
