@@ -5,6 +5,12 @@ class Trainer {
     this.belt = [];
     this.bag = [];
   }
+
+  releasePokemon(pokemon) {
+    return this.belt.find((pokeball) => {
+      return pokeball.storedPokemon.name === pokemon;
+    }).storedPokemon;
+  }
 }
 
 module.exports = Trainer;
