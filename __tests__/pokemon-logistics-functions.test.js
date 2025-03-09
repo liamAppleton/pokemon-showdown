@@ -1,10 +1,11 @@
-const { catchPokemonForTrainer } = require('../utils');
+const { catchPokemonForTrainer, computerTeamSelection } = require('../utils');
 const {
   NormalPokemon,
   FirePokemon,
   WaterPokemon,
   Pokeball,
 } = require('../classes');
+const { pokemon } = require('../class-instances');
 
 describe('catchPokemonForTrainer()', () => {
   let lopunny, charizard, squirtle, eevee, ninetails, blastoise;
@@ -41,5 +42,38 @@ describe('catchPokemonForTrainer()', () => {
     const pokeballArrCopy = structuredClone(pokeballArr);
     catchPokemonForTrainer(pokemonArr, pokeballArr);
     expect(pokeballArr).not.toEqual(pokeballArrCopy);
+  });
+});
+
+describe('computerTeamSelection()', () => {
+  let pb1, pb2, pb3, pb4, pb5, pb6;
+  let pokeballArr;
+  beforeEach(() => {
+    pb1 = new Pokeball();
+    pb2 = new Pokeball();
+    pb3 = new Pokeball();
+    pb4 = new Pokeball();
+    pb5 = new Pokeball();
+    pb6 = new Pokeball();
+
+    pokeballArr = [pb1, pb2, pb3, pb4, pb5, pb6];
+  });
+  test('should return an array of pokeballs with randomly selected pokemon stored inside each', () => {
+    const pokemonCopy = structuredClone(pokemon);
+    computerTeamSelection(pokeballArr, pokemonCopy);
+    pokeballArr.forEach((pokeball) => {
+      expect(pokeball.storedPokemon).toHaveProperty('name');
+    });
+  });
+  test('should mutate pokeballArr', () => {
+    const pokemonCopy = structuredClone(pokemon);
+    const pokeballArrCopy = structuredClone(pokeballArr);
+    computerTeamSelection(pokeballArr, pokemonCopy);
+    expect(pokeballArr).not.toEqual(pokeballArrCopy);
+  });
+  test('should remove 6 pokemon from pokemon object', () => {
+    const pokemonCopy = structuredClone(pokemon);
+    computerTeamSelection(pokeballArr, pokemonCopy);
+    expect(Object.keys(pokemonCopy).length).toBe(29);
   });
 });

@@ -1,3 +1,5 @@
+const { pokemonLookup, deletePokemon } = require('./pokemon-data-functions');
+
 const catchPokemonForTrainer = (pokemonArr, pokeballArr) => {
   pokeballArr.forEach((pokeball, i) => {
     pokeball.catch(pokemonArr[i]);
@@ -5,4 +7,17 @@ const catchPokemonForTrainer = (pokemonArr, pokeballArr) => {
   return pokeballArr;
 };
 
-module.exports = { catchPokemonForTrainer };
+const computerTeamSelection = (pokeballArr, pokemonObject) => {
+  pokeballArr.forEach((pokeball) => {
+    const pokemonNames = Object.keys(pokemonObject);
+    const index = Math.floor(Math.random() * pokemonNames.length);
+    const selectedPokemon = pokemonLookup(pokemonObject, pokemonNames[index]);
+
+    pokeball.catch(selectedPokemon);
+
+    deletePokemon(pokemonObject, selectedPokemon.name);
+  });
+  return pokeballArr;
+};
+
+module.exports = { catchPokemonForTrainer, computerTeamSelection };
