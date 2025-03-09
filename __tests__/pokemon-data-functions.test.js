@@ -1,5 +1,5 @@
 const { pokemon } = require('../class-instances');
-const { pokemonLookup, deletePokemon } = require('../utils');
+const { pokemonLookup, deletePokemon, formatNames } = require('../utils');
 
 describe('pokemonLookup()', () => {
   test('should return a pokemon instance with same name as input', () => {
@@ -13,8 +13,29 @@ describe('pokemonLookup()', () => {
 });
 
 describe('deletePokemon()', () => {
-  test('should remove input pokemon from input object', () => {
-    deletePokemon('Eevee');
-    expect(pokemonLookup(pokemon, 'eevee')).toBe(undefined);
+  test('should remove input pokemon from input pokemon object', () => {
+    deletePokemon('Spearow');
+    expect(pokemonLookup(pokemon, 'spearow')).toBe(undefined);
+  });
+});
+
+describe('formatNames()', () => {
+  test('should return a formatted array with first letter capitalised and type emoji added', () => {
+    const input = ['eevee', 'poliwag', 'charmander'];
+    expect(formatNames(input)).toEqual([
+      '🐻 Eevee',
+      '🌊 Poliwag',
+      '🔥 Charmander',
+    ]);
+  });
+  test('should not mutate input array', () => {
+    const input = ['eevee', 'poliwag', 'charmander'];
+    const inputCopy = ['eevee', 'poliwag', 'charmander'];
+    formatNames(input);
+    expect(input).toEqual(inputCopy);
+  });
+  test('should return an array with a new reference to the input array', () => {
+    const input = ['eevee', 'poliwag', 'charmander'];
+    expect(formatNames(input)).not.toBe(input);
   });
 });
