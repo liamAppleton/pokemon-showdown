@@ -21,11 +21,23 @@ describe('deletePokemon()', () => {
 
 describe('formatNames()', () => {
   test('should return a formatted array with first letter capitalised and type emoji added', () => {
-    const input = ['eevee', 'poliwag', 'charmander'];
+    const input = [
+      'eevee',
+      'poliwag',
+      'charmander',
+      'bellsprout',
+      'pikachu',
+      'hitmonchan',
+      'zubat',
+    ];
     expect(formatNames(input)).toEqual([
       '🐻 Eevee',
       '🌊 Poliwag',
       '🔥 Charmander',
+      '🍃 Bellsprout',
+      '⚡️ Pikachu',
+      '🥊 Hitmonchan',
+      '🪽 Zubat',
     ]);
   });
   test('should not mutate input array', () => {

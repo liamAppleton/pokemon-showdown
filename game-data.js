@@ -1,6 +1,6 @@
 const { pokemon } = require('./class-instances');
-const {} = require('./utils');
+const { formatNames } = require('./utils');
 
-const pokemonNameList = Object.keys(pokemon);
+const pokemonNameList = formatNames(Object.keys(pokemon));
 
 module.exports = { pokemonNameList, pokemon };

@@ -11,9 +11,11 @@ const initialSelection = async () => {
     loop: true,
   };
   return inquirer.prompt(selectionQuestion).then(({ selectedPokemon }) => {
-    deletePokemon(selectedPokemon);
     const index = pokemonNameList.indexOf(selectedPokemon);
-    pokemonNameList.splice(index, 1);
+    pokemonNameList.splice(index, 1); // remove from name list
+
+    const emojiRemovedName = selectedPokemon.match(/[a-z]+/i)[0];
+    deletePokemon(emojiRemovedName);
   });
 };
 
