@@ -1,12 +1,15 @@
 const inquirer = require('inquirer');
+const { pokemon } = require('./class-instances');
 const { pokemonNameList } = require('./game-data');
-const { deletePokemon } = require('./utils');
+const { deletePokemon, pokemonLookup } = require('./utils');
+
+const playerSelections = [];
 
 const initialSelection = async () => {
   const selectionQuestion = {
     type: 'list',
     name: 'selectedPokemon',
-    message: 'Select a pokemon',
+    message: 'Select a pokemon: ',
     choices: pokemonNameList,
     loop: true,
   };
@@ -15,7 +18,10 @@ const initialSelection = async () => {
     pokemonNameList.splice(index, 1); // remove from name list
 
     const emojiRemovedName = selectedPokemon.match(/[a-z]+/i)[0];
-    deletePokemon(emojiRemovedName);
+    playerSelections.push(pokemonLookup(pokemon, emojiRemovedName));
+    console.log(playerSelections);
+
+    deletePokemon(pokemon, emojiRemovedName); // remove from pokemon object
   });
 };
 
