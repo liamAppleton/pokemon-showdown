@@ -56,11 +56,13 @@ const {
   pb12,
 } = require('./pokeball-instances');
 
-module.exports = {
+module.exports.potions = {
   smallPotion,
   mediumPotion,
   largePotion,
   maxPotion,
+};
+module.exports.pokeballs = {
   pb1,
   pb2,
   pb3,
