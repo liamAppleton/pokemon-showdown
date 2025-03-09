@@ -4,11 +4,12 @@ const {
   initialSelection,
   playerSelections,
 } = require('./inquirer-prompts');
-const { catchPokemonForTrainer } = require('./utils');
+const { catchPokemonForTrainer, computerTeamSelection } = require('./utils');
 const {
   playerPotions,
   playerPokeballs,
   computerPokeballs,
+  pokemon,
 } = require('./game-data');
 
 let playerName;
@@ -29,6 +30,10 @@ const main = async () => {
   player.bag = playerPotions;
 
   // initialise computer
+  computer = new Trainer('Computer', true);
+  computer.belt = computerTeamSelection(computerPokeballs, pokemon);
+
+  console.log(computer.belt);
 };
 
 main();
