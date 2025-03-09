@@ -5,7 +5,18 @@ const { deletePokemon, pokemonLookup } = require('./utils');
 
 const playerSelections = [];
 
-const initialSelection = async () => {
+const getPlayerName = () => {
+  const nameQuestion = {
+    type: 'String',
+    name: 'chosenName',
+    message: 'What is your name?',
+  };
+  return inquirer.prompt(nameQuestion).then(({ chosenName }) => {
+    return chosenName;
+  });
+};
+
+const initialSelection = () => {
   const selectionQuestion = {
     type: 'list',
     name: 'selectedPokemon',
@@ -24,4 +35,8 @@ const initialSelection = async () => {
   });
 };
 
-module.exports = { initialSelection, playerSelections };
+module.exports = {
+  getPlayerName,
+  initialSelection,
+  playerSelections,
+};
