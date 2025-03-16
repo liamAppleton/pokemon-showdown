@@ -22,7 +22,7 @@ const computerTeamSelection = (pokeballArr, pokemonObject) => {
 
 const computerReleasePokemon = (pokeballArr) => {
   const index = Math.floor(Math.random() * pokeballArr.length);
-  return pokeballArr[index].throw();
+  return pokeballArr[index].storedPokemon.name;
 };
 
 module.exports = {

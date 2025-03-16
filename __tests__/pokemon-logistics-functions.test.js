@@ -75,29 +75,27 @@ describe('computerReleasePokemon()', () => {
   beforeEach(() => {
     catchPokemonForTrainer(pokemonArr, pokeballArr);
   });
-  test('should return an object', () => {
-    expect(typeof computerReleasePokemon(pokeballArr)).toBe('object');
-  });
-  test("should return a randomly selected instance of Pokemon class from the computer's belt", () => {
-    expect(computerReleasePokemon(pokeballArr)).toBeInstanceOf(Pokemon);
+
+  test("should return a randomly selected pokemon name from the computer's belt", () => {
+    expect(typeof computerReleasePokemon(pokeballArr)).toBe('string');
   });
   test('should return lopunny object when Math.random is 0.15', () => {
     jest.spyOn(Math, 'random').mockReturnValue(0.15);
-    expect(computerReleasePokemon(pokeballArr)).toEqual(lopunny);
+    expect(computerReleasePokemon(pokeballArr)).toEqual('Lopunny');
   });
   test('should return charizard object when Math.random is 0.2', () => {
     jest.spyOn(Math, 'random').mockReturnValue(0.2);
-    expect(computerReleasePokemon(pokeballArr)).toEqual(charizard);
+    expect(computerReleasePokemon(pokeballArr)).toEqual('Charizard');
   });
   test('should return ninetails object when Math.random is 0.8', () => {
     jest.spyOn(Math, 'random').mockReturnValue(0.8);
-    expect(computerReleasePokemon(pokeballArr)).toEqual(ninetails);
+    expect(computerReleasePokemon(pokeballArr)).toEqual('Ninetails');
   });
   test('should work with an input array of length less than 6', () => {
     pokeballArr.pop();
-    expect(computerReleasePokemon(pokeballArr)).toBeInstanceOf(Pokemon);
+    expect(typeof computerReleasePokemon(pokeballArr)).toBe('string');
     pokeballArr.pop();
-    expect(computerReleasePokemon(pokeballArr)).toBeInstanceOf(Pokemon);
+    expect(typeof computerReleasePokemon(pokeballArr)).toBe('string');
   });
   test('should not mutate input array', () => {
     const pokeballArrCopy = [...pokeballArr];
