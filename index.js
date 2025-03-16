@@ -32,8 +32,6 @@ const main = async () => {
   // initialise computer
   computer = new Trainer('Computer', true);
   computer.belt = computerTeamSelection(computerPokeballs, pokemon);
-
-  console.log(computer.belt);
 };
 
 main();

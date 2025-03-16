@@ -6,6 +6,7 @@ const {
 const {
   catchPokemonForTrainer,
   computerTeamSelection,
+  computerReleasePokemon,
 } = require('./pokemon-logistics-functions');
 
 module.exports = {
@@ -14,4 +15,5 @@ module.exports = {
   formatNames,
   catchPokemonForTrainer,
   computerTeamSelection,
+  computerReleasePokemon,
 };

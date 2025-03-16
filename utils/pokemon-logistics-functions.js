@@ -1,5 +1,4 @@
 const { pokemonLookup, deletePokemon } = require('./pokemon-data-functions');
-const { Trainer } = require('../classes');
 
 const catchPokemonForTrainer = (pokemonArr, pokeballArr) => {
   pokeballArr.forEach((pokeball, i) => {
@@ -21,7 +20,13 @@ const computerTeamSelection = (pokeballArr, pokemonObject) => {
   return pokeballArr;
 };
 
+const computerReleasePokemon = (pokeballArr) => {
+  const index = Math.floor(Math.random() * pokeballArr.length);
+  return pokeballArr[index].throw();
+};
+
 module.exports = {
   catchPokemonForTrainer,
   computerTeamSelection,
+  computerReleasePokemon,
 };

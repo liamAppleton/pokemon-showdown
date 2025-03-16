@@ -1,5 +1,10 @@
-const { catchPokemonForTrainer, computerTeamSelection } = require('../utils');
 const {
+  catchPokemonForTrainer,
+  computerTeamSelection,
+  computerReleasePokemon,
+} = require('../utils');
+const {
+  Pokemon,
   NormalPokemon,
   FirePokemon,
   WaterPokemon,
@@ -63,5 +68,17 @@ describe('computerTeamSelection()', () => {
     const pokemonCopy = structuredClone(pokemon);
     computerTeamSelection(pokeballArr, pokemonCopy);
     expect(Object.keys(pokemonCopy).length).toBe(29);
+  });
+});
+
+describe('computerReleasePokemon()', () => {
+  beforeEach(() => {
+    catchPokemonForTrainer(pokemonArr, pokeballArr);
+  });
+  test('should return an object', () => {
+    expect(typeof computerReleasePokemon(pokeballArr)).toBe('object');
+  });
+  test("should return a randomly selected instance of Pokemon class from the computer's belt", () => {
+    expect(computerReleasePokemon(pokeballArr)).toBeInstanceOf(Pokemon);
   });
 });
