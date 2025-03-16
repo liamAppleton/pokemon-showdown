@@ -40,9 +40,7 @@ const main = async () => {
   computer.belt = computerTeamSelection(computerPokeballs, pokemon);
 
   const computerSentOut = computerReleasePokemon(computer.belt);
-  console.log(computerSentOut);
   const playerSentOut = await playerReleasePokemon(player.belt);
-  console.log(playerSentOut);
 };
 
 main();
