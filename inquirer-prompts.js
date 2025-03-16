@@ -20,7 +20,7 @@ const initialSelection = () => {
   const selectionQuestion = {
     type: 'list',
     name: 'selectedPokemon',
-    message: 'Select a pokemon: ',
+    message: 'Select a Pokemon: ',
     choices: pokemonNameList,
     loop: true,
   };
@@ -35,8 +35,24 @@ const initialSelection = () => {
   });
 };
 
+const playerReleasePokemon = async (playerBelt) => {
+  const pokemonNames = playerBelt.map(({ storedPokemon: { name } }) => {
+    return name;
+  });
+  const selectionQuestion = {
+    type: 'list',
+    name: 'selectedPokemon',
+    message: 'Release a Pokemon to fight!',
+    choices: pokemonNames,
+    loop: true,
+  };
+  const { selectedPokemon } = await inquirer.prompt(selectionQuestion);
+  return selectedPokemon;
+};
+
 module.exports = {
   getPlayerName,
   initialSelection,
   playerSelections,
+  playerReleasePokemon,
 };

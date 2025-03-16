@@ -3,8 +3,13 @@ const {
   getPlayerName,
   initialSelection,
   playerSelections,
+  playerReleasePokemon,
 } = require('./inquirer-prompts');
-const { catchPokemonForTrainer, computerTeamSelection } = require('./utils');
+const {
+  catchPokemonForTrainer,
+  computerTeamSelection,
+  computerReleasePokemon,
+} = require('./utils');
 const {
   playerPotions,
   playerPokeballs,
@@ -14,6 +19,7 @@ const {
 
 let playerName;
 let player, computer;
+let battle;
 
 const main = async () => {
   playerName = await getPlayerName();
@@ -32,6 +38,11 @@ const main = async () => {
   // initialise computer
   computer = new Trainer('Computer', true);
   computer.belt = computerTeamSelection(computerPokeballs, pokemon);
+
+  const computerSentOut = computerReleasePokemon(computer.belt);
+  console.log(computerSentOut);
+  const playerSentOut = await playerReleasePokemon(player.belt);
+  console.log(playerSentOut);
 };
 
 main();
