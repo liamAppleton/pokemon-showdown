@@ -81,4 +81,16 @@ describe('computerReleasePokemon()', () => {
   test("should return a randomly selected instance of Pokemon class from the computer's belt", () => {
     expect(computerReleasePokemon(pokeballArr)).toBeInstanceOf(Pokemon);
   });
+  test('should return lopunny object when Math.random is 0.15', () => {
+    jest.spyOn(Math, 'random').mockReturnValue(0.15);
+    expect(computerReleasePokemon(pokeballArr)).toEqual(lopunny);
+  });
+  test('should return charizard object when Math.random is 0.2', () => {
+    jest.spyOn(Math, 'random').mockReturnValue(0.2);
+    expect(computerReleasePokemon(pokeballArr)).toEqual(charizard);
+  });
+  test('should return ninetails object when Math.random is 0.8', () => {
+    jest.spyOn(Math, 'random').mockReturnValue(0.8);
+    expect(computerReleasePokemon(pokeballArr)).toEqual(ninetails);
+  });
 });
