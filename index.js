@@ -45,6 +45,8 @@ const main = async () => {
   const playerSentOut = await playerReleasePokemon(player.belt);
   battle.selectPokemon(player, playerSentOut);
   battle.selectPokemon(computer, computerSentOut);
+
+  //! next you need to create a round() inquirer prompt
 };
 
 main();
