@@ -93,4 +93,10 @@ describe('computerReleasePokemon()', () => {
     jest.spyOn(Math, 'random').mockReturnValue(0.8);
     expect(computerReleasePokemon(pokeballArr)).toEqual(ninetails);
   });
+  test('should work with an input array of length less than 6', () => {
+    pokeballArr.pop();
+    expect(computerReleasePokemon(pokeballArr)).toBeInstanceOf(Pokemon);
+    pokeballArr.pop();
+    expect(computerReleasePokemon(pokeballArr)).toBeInstanceOf(Pokemon);
+  });
 });
