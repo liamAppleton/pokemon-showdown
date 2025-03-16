@@ -99,4 +99,9 @@ describe('computerReleasePokemon()', () => {
     pokeballArr.pop();
     expect(computerReleasePokemon(pokeballArr)).toBeInstanceOf(Pokemon);
   });
+  test('should not mutate input array', () => {
+    const pokeballArrCopy = [...pokeballArr];
+    computerReleasePokemon(pokeballArr);
+    expect(pokeballArr).toEqual(pokeballArrCopy);
+  });
 });
