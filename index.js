@@ -1,4 +1,4 @@
-const { Trainer } = require('./classes');
+const { Trainer, Battle } = require('./classes');
 const {
   getPlayerName,
   initialSelection,
@@ -39,8 +39,12 @@ const main = async () => {
   computer = new Trainer('Computer', true);
   computer.belt = computerTeamSelection(computerPokeballs, pokemon);
 
+  // initialise battle and add selected pokemon to fight
+  battle = new Battle(player, computer);
   const computerSentOut = computerReleasePokemon(computer.belt);
   const playerSentOut = await playerReleasePokemon(player.belt);
+  battle.selectPokemon(player, playerSentOut);
+  battle.selectPokemon(computer, computerSentOut);
 };
 
 main();
