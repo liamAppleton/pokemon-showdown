@@ -21,6 +21,7 @@ const {
 let playerName;
 let player, computer;
 let battle;
+let gameOver = false;
 
 const main = async () => {
   playerName = await getPlayerName();
@@ -49,8 +50,27 @@ const main = async () => {
 
   //! next you need to create a round() inquirer prompt
   //! remember you're in a branch/ticket now not main!!
-  const turn = await playerTurnSelection();
-  console.log(turn);
+  round();
+};
+
+const round = async () => {
+  while (!gameOver) {
+    const playerMove = await playerTurnSelection();
+
+    // make prompt functions for each of these
+    if (playerMove === 'FIGHT') {
+    }
+
+    if (playerMove === 'POKéMON') {
+    }
+
+    if (playerMove === 'BAG') {
+    }
+
+    if (playerMove === 'RUN') {
+      gameOver = true;
+    }
+  }
 };
 
 main();
