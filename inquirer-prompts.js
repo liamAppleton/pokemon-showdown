@@ -45,9 +45,21 @@ const playerReleasePokemon = async (playerBelt) => {
   return selectedPokemon;
 };
 
+const playerTurnSelection = async () => {
+  const { playerMove } = await inquirer.prompt({
+    type: 'list',
+    name: 'playerMove',
+    message: 'What would you like to do?',
+    choices: ['FIGHT', 'POKéMON', 'BAG', 'RUN'],
+    loop: true,
+  });
+  return playerMove;
+};
+
 module.exports = {
   getPlayerName,
   initialSelection,
   playerSelections,
   playerReleasePokemon,
+  playerTurnSelection,
 };

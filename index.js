@@ -4,6 +4,7 @@ const {
   initialSelection,
   playerSelections,
   playerReleasePokemon,
+  playerTurnSelection,
 } = require('./inquirer-prompts');
 const {
   catchPokemonForTrainer,
@@ -47,6 +48,9 @@ const main = async () => {
   battle.selectPokemon(computer, computerSentOut);
 
   //! next you need to create a round() inquirer prompt
+  //! remember you're in a branch/ticket now not main!!
+  const turn = await playerTurnSelection();
+  console.log(turn);
 };
 
 main();
