@@ -4,7 +4,9 @@ const {
   initialSelection,
   playerSelections,
   playerReleasePokemon,
-  playerTurnSelection,
+  playerTurn,
+  playerTurnPokemon,
+  playerTurnBag,
 } = require('./inquirer-prompts');
 const {
   catchPokemonForTrainer,
@@ -55,22 +57,40 @@ const main = async () => {
 
 const round = async () => {
   while (!gameOver) {
-    const playerMove = await playerTurnSelection();
+    const playerMove = await playerTurn();
 
-    // make prompt functions for each of these
     if (playerMove === 'FIGHT') {
     }
 
     if (playerMove === 'POKéMON') {
+      const newPokemon = await playerTurnPokemon(player.belt);
+
+      if (newPokemon !== '> BACK <') {
+        battle.selectPokemon(player, newPokemon);
+      } else {
+        break; // break out of loop without setting gameOver to true to call round again
+      }
     }
 
     if (playerMove === 'BAG') {
+      const selectedPotion = await playerTurnBag(player.bag);
+
+      if (selectedPotion !== '> BACK <') {
+        const potion = player.bag.find((pot) => pot.name === selectedPotion);
+        potion.use(battle.playerPokemon);
+      } else {
+        break; // break out of loop without setting gameOver to true to call round again
+      }
     }
 
     if (playerMove === 'RUN') {
       gameOver = true;
     }
   }
+
+  if (!gameOver) {
+    round();
+  } // round will be called continuously based on player action until gameOver is set to true
 };
 
 main();

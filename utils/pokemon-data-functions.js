@@ -1,6 +1,5 @@
-const { pokemon } = require('../class-instances');
-
 const pokemonLookup = (pokemonList, pokemonName) => {
+  // console.log(pokemonList[pokemonName.toLowerCase()].type);
   return pokemonList[pokemonName.toLowerCase()];
 };
 
@@ -9,9 +8,9 @@ const deletePokemon = (pokemonList, pokemonName) => {
 };
 
 // capitalise first letter and add type emoji
-const formatNames = (pokemonNames) => {
+const formatNames = (pokemonList, pokemonNames) => {
   return pokemonNames.map((currentPokemon) => {
-    const type = pokemonLookup(pokemon, currentPokemon).type;
+    const type = pokemonLookup(pokemonList, currentPokemon).type;
     let emoji;
     if (type === 'Normal') emoji = '🐻';
     if (type === 'Fire') emoji = '🔥';

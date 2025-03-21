@@ -1,7 +1,7 @@
 const inquirer = require('inquirer');
 const { pokemon } = require('./class-instances');
 const { pokemonNameList } = require('./game-data');
-const { deletePokemon, pokemonLookup } = require('./utils');
+const { deletePokemon, pokemonLookup, formatNames } = require('./utils');
 
 const playerSelections = [];
 
@@ -45,7 +45,7 @@ const playerReleasePokemon = async (playerBelt) => {
   return selectedPokemon;
 };
 
-const playerTurnSelection = async () => {
+const playerTurn = async () => {
   const { playerMove } = await inquirer.prompt({
     type: 'list',
     name: 'playerMove',
@@ -56,10 +56,41 @@ const playerTurnSelection = async () => {
   return playerMove;
 };
 
+const playerTurnPokemon = async (playerBelt) => {
+  const pokemonNames = playerBelt.map(({ storedPokemon: { name } }) => {
+    return name;
+  });
+  const { selectedPokemon } = await inquirer.prompt({
+    type: 'list',
+    name: 'selectedPokemon',
+    message: 'Choose a new Pokemon?',
+    choices: [...pokemonNames, '> BACK <'],
+    loop: true,
+  });
+  return selectedPokemon;
+};
+
+const playerTurnBag = async (playerBag) => {
+  const potionNames = playerBag.map(({ name }) => {
+    return name;
+  });
+  const { selectedPotion } = await inquirer.prompt({
+    type: 'list',
+    name: 'selectedPotion',
+    message: 'Select a potion:',
+    choices: [...potionNames, '> BACK <'],
+    loop: true,
+  });
+
+  return selectedPotion;
+};
+
 module.exports = {
   getPlayerName,
   initialSelection,
   playerSelections,
   playerReleasePokemon,
-  playerTurnSelection,
+  playerTurn,
+  playerTurnPokemon,
+  playerTurnBag,
 };
