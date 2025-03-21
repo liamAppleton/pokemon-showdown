@@ -1,7 +1,7 @@
 const inquirer = require('inquirer');
 const { pokemon } = require('./class-instances');
 const { pokemonNameList } = require('./game-data');
-const { deletePokemon, pokemonLookup, formatNames } = require('./utils');
+const { deletePokemon, pokemonLookup } = require('./utils');
 
 const playerSelections = [];
 
@@ -56,10 +56,12 @@ const playerTurn = async () => {
   return playerMove;
 };
 
-const playerTurnPokemon = async (playerBelt) => {
-  const pokemonNames = playerBelt.map(({ storedPokemon: { name } }) => {
-    return name;
-  });
+const playerTurnPokemon = async (currentPokemon, playerBelt) => {
+  const pokemonNames = playerBelt
+    .map(({ storedPokemon: { name } }) => {
+      return name;
+    })
+    .filter((pokemonName) => pokemonName !== currentPokemon);
   const { selectedPokemon } = await inquirer.prompt({
     type: 'list',
     name: 'selectedPokemon',

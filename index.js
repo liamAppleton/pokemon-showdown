@@ -50,9 +50,40 @@ const main = async () => {
   battle.selectPokemon(player, playerSentOut);
   battle.selectPokemon(computer, computerSentOut);
 
-  //! next you need to create a round() inquirer prompt
   //! remember you're in a branch/ticket now not main!!
   round();
+};
+
+const roundFight = async (trainer) => {
+  let { playerPokemon, computerPokemon } = battle;
+
+  if (!trainer.isComputer) {
+    battle.fight(playerPokemon, computerPokemon, computer);
+
+    console.log(computerPokemon, 'computer');
+
+    if (computer.belt.length === 0) {
+      gameOver = true;
+    } else if (computerPokemon.hasFainted()) {
+      battle.selectPokemon(computer, computerReleasePokemon(computer.belt));
+      computerPokemon = battle.computerPokemon;
+    } else if (!computerPokemon.hasFainted()) {
+      await roundFight(computer);
+    }
+  }
+
+  if (trainer.isComputer) {
+    battle.fight(computerPokemon, playerPokemon, player);
+
+    console.log(playerPokemon, 'player');
+
+    if (player.belt.length === 0) {
+      gameOver = true;
+    } else if (playerPokemon.hasFainted()) {
+      const playerSentOut = await playerReleasePokemon(player.belt);
+      battle.selectPokemon(player, playerSentOut);
+    }
+  }
 };
 
 const round = async () => {
@@ -60,14 +91,14 @@ const round = async () => {
     const playerMove = await playerTurn();
 
     if (playerMove === 'FIGHT') {
-      const { playerPokemon, computerPokemon } = battle;
-      console.log(playerPokemon, computerPokemon);
-      battle.fight(playerPokemon, computerPokemon, computer);
-      console.log(playerPokemon, computerPokemon);
+      await roundFight(player);
     }
 
     if (playerMove === 'POKéMON') {
-      const newPokemon = await playerTurnPokemon(player.belt);
+      const newPokemon = await playerTurnPokemon(
+        battle.playerPokemon.name,
+        player.belt
+      );
 
       if (newPokemon !== '> BACK <') {
         battle.selectPokemon(player, newPokemon);
