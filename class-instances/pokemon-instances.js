@@ -8,47 +8,47 @@ const {
   FightingPokemon,
 } = require('../classes');
 
-const eevee = new NormalPokemon('Eevee', 'Tackle', 55, 40);
-const snorlax = new NormalPokemon('Snorlax', 'Body Slam', 160, 85);
-const pidgey = new NormalPokemon('Pidgey', 'Gust', 40, 30);
-const meowth = new NormalPokemon('Meowth', 'Scratch', 50, 45);
-const regigigas = new NormalPokemon('Regigigas', 'Crush Grip', 110, 110);
+const eevee = new NormalPokemon('Eevee', 'Tackle', 70, 20);
+const snorlax = new NormalPokemon('Snorlax', 'Body Slam', 180, 30);
+const pidgey = new NormalPokemon('Pidgey', 'Gust', 55, 15);
+const meowth = new NormalPokemon('Meowth', 'Scratch', 60, 18);
+const regigigas = new NormalPokemon('Regigigas', 'Crush Grip', 130, 40);
 
-const charmander = new FirePokemon('Charmander', 'Flamethrower', 39, 60);
-const vulpix = new FirePokemon('Vulpix', 'Fire Spin', 38, 50);
-const moltres = new FirePokemon('Moltres', 'Sacred Fire', 90, 100);
-const ponyta = new FirePokemon('Ponyta', 'Flame Wheel', 50, 65);
-const magmar = new FirePokemon('Magmar', 'Fire Punch', 65, 75);
+const charmander = new FirePokemon('Charmander', 'Flamethrower', 60, 25);
+const vulpix = new FirePokemon('Vulpix', 'Fire Spin', 55, 22);
+const moltres = new FirePokemon('Moltres', 'Sacred Fire', 120, 35);
+const ponyta = new FirePokemon('Ponyta', 'Flame Wheel', 65, 27);
+const magmar = new FirePokemon('Magmar', 'Fire Punch', 80, 30);
 
-const squirtle = new WaterPokemon('Squirtle', 'Water Gun', 44, 48);
-const psyduck = new WaterPokemon('Psyduck', 'Bubble Beam', 50, 52);
-const poliwag = new WaterPokemon('Poliwag', 'Hydro Pump', 40, 55);
-const kyogre = new WaterPokemon('Kyogre', 'Origin Pulse', 100, 120);
-const starmie = new WaterPokemon('Starmie', 'Surf', 60, 70);
+const squirtle = new WaterPokemon('Squirtle', 'Water Gun', 70, 20);
+const psyduck = new WaterPokemon('Psyduck', 'Bubble Beam', 68, 22);
+const poliwag = new WaterPokemon('Poliwag', 'Hydro Pump', 65, 23);
+const kyogre = new WaterPokemon('Kyogre', 'Origin Pulse', 140, 38);
+const starmie = new WaterPokemon('Starmie', 'Surf', 80, 30);
 
-const bulbasaur = new GrassPokemon('Bulbasaur', 'Vine Whip', 45, 49);
-const celebi = new GrassPokemon('Celebi', 'Leaf Storm', 100, 100);
-const bellsprout = new GrassPokemon('Bellsprout', 'Solar Beam', 50, 55);
-const exeggcute = new GrassPokemon('Exeggcute', 'Seed Bomb', 60, 65);
-const tangela = new GrassPokemon('Tangela', 'Power Whip', 65, 75);
+const bulbasaur = new GrassPokemon('Bulbasaur', 'Vine Whip', 72, 22);
+const celebi = new GrassPokemon('Celebi', 'Leaf Storm', 120, 33);
+const bellsprout = new GrassPokemon('Bellsprout', 'Solar Beam', 68, 24);
+const exeggcute = new GrassPokemon('Exeggcute', 'Seed Bomb', 75, 26);
+const tangela = new GrassPokemon('Tangela', 'Power Whip', 85, 28);
 
-const pikachu = new ElectricPokemon('Pikachu', 'Thunderbolt', 35, 55);
-const zapdos = new ElectricPokemon('Zapdos', 'Thunder', 90, 110);
-const magnemite = new ElectricPokemon('Magnemite', 'Thunder Shock', 50, 60);
-const electabuzz = new ElectricPokemon('Electabuzz', 'Thunder Punch', 65, 75);
-const jolteon = new ElectricPokemon('Jolteon', 'Discharge', 65, 80);
+const pikachu = new ElectricPokemon('Pikachu', 'Thunderbolt', 60, 24);
+const zapdos = new ElectricPokemon('Zapdos', 'Thunder', 125, 38);
+const magnemite = new ElectricPokemon('Magnemite', 'Thunder Shock', 65, 23);
+const electabuzz = new ElectricPokemon('Electabuzz', 'Thunder Punch', 80, 28);
+const jolteon = new ElectricPokemon('Jolteon', 'Discharge', 85, 30);
 
-const pidgeotto = new FlyingPokemon('Pidgeotto', 'Wing Attack', 63, 60);
-const spearow = new FlyingPokemon('Spearow', 'Peck', 40, 50);
-const zubat = new FlyingPokemon('Zubat', 'Air Slash', 40, 45);
-const lugia = new FlyingPokemon('Lugia', 'Aeroblast', 106, 110);
-const aerodactyl = new FlyingPokemon('Aerodactyl', 'Sky Attack', 80, 105);
+const pidgeotto = new FlyingPokemon('Pidgeotto', 'Wing Attack', 75, 22);
+const spearow = new FlyingPokemon('Spearow', 'Peck', 60, 18);
+const zubat = new FlyingPokemon('Zubat', 'Air Slash', 58, 16);
+const lugia = new FlyingPokemon('Lugia', 'Aeroblast', 140, 35);
+const aerodactyl = new FlyingPokemon('Aerodactyl', 'Sky Attack', 105, 32);
 
-const machop = new FightingPokemon('Machop', 'Karate Chop', 70, 60);
-const hitmonlee = new FightingPokemon('Hitmonlee', 'High Jump Kick', 50, 85);
-const hitmonchan = new FightingPokemon('Hitmonchan', 'Mega Punch', 50, 75);
-const mankey = new FightingPokemon('Mankey', 'Cross Chop', 40, 70);
-const terrakion = new FightingPokemon('Terrakion', 'Sacred Sword', 91, 110);
+const machop = new FightingPokemon('Machop', 'Karate Chop', 80, 26);
+const hitmonlee = new FightingPokemon('Hitmonlee', 'High Jump Kick', 70, 28);
+const hitmonchan = new FightingPokemon('Hitmonchan', 'Mega Punch', 70, 26);
+const mankey = new FightingPokemon('Mankey', 'Cross Chop', 65, 25);
+const terrakion = new FightingPokemon('Terrakion', 'Sacred Sword', 130, 40);
 
 module.exports = {
   eevee,

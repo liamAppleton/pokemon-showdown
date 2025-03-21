@@ -45,9 +45,54 @@ const playerReleasePokemon = async (playerBelt) => {
   return selectedPokemon;
 };
 
+const playerTurn = async () => {
+  const { playerMove } = await inquirer.prompt({
+    type: 'list',
+    name: 'playerMove',
+    message: 'What would you like to do?',
+    choices: ['FIGHT', 'POKéMON', 'BAG', 'RUN'],
+    loop: true,
+  });
+  return playerMove;
+};
+
+const playerTurnPokemon = async (currentPokemon, playerBelt) => {
+  const pokemonNames = playerBelt
+    .map(({ storedPokemon: { name } }) => {
+      return name;
+    })
+    .filter((pokemonName) => pokemonName !== currentPokemon);
+  const { selectedPokemon } = await inquirer.prompt({
+    type: 'list',
+    name: 'selectedPokemon',
+    message: 'Choose a new Pokemon?',
+    choices: [...pokemonNames, '> BACK <'],
+    loop: true,
+  });
+  return selectedPokemon;
+};
+
+const playerTurnBag = async (playerBag) => {
+  const potionNames = playerBag.map(({ name }) => {
+    return name;
+  });
+  const { selectedPotion } = await inquirer.prompt({
+    type: 'list',
+    name: 'selectedPotion',
+    message: 'Select a potion:',
+    choices: [...potionNames, '> BACK <'],
+    loop: true,
+  });
+
+  return selectedPotion;
+};
+
 module.exports = {
   getPlayerName,
   initialSelection,
   playerSelections,
   playerReleasePokemon,
+  playerTurn,
+  playerTurnPokemon,
+  playerTurnBag,
 };
