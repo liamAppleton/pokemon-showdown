@@ -102,6 +102,7 @@ const round = async () => {
 
       if (newPokemon !== '> BACK <') {
         battle.selectPokemon(player, newPokemon);
+        await roundFight(computer);
       } else {
         break; // break out of loop without setting gameOver to true to call round again
       }
@@ -116,6 +117,7 @@ const round = async () => {
 
         const index = player.bag.indexOf(potion);
         player.bag.splice(index, 1);
+        await roundFight(computer);
       } else {
         break; // break out of loop without setting gameOver to true to call round again
       }
