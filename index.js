@@ -60,6 +60,10 @@ const round = async () => {
     const playerMove = await playerTurn();
 
     if (playerMove === 'FIGHT') {
+      const { playerPokemon, computerPokemon } = battle;
+      console.log(playerPokemon, computerPokemon);
+      battle.fight(playerPokemon, computerPokemon, computer);
+      console.log(playerPokemon, computerPokemon);
     }
 
     if (playerMove === 'POKéMON') {
@@ -78,6 +82,9 @@ const round = async () => {
       if (selectedPotion !== '> BACK <') {
         const potion = player.bag.find((pot) => pot.name === selectedPotion);
         potion.use(battle.playerPokemon);
+
+        const index = player.bag.indexOf(potion);
+        player.bag.splice(index, 1);
       } else {
         break; // break out of loop without setting gameOver to true to call round again
       }
