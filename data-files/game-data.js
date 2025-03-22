@@ -26,8 +26,8 @@ const computerPokeballs = [
 ];
 
 module.exports = {
+  pokemon,
   pokemonNameList,
-  pokemon, //! does this need exporting here?
   playerPotions,
   playerPokeballs,
   computerPokeballs,
