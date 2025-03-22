@@ -9,17 +9,20 @@ describe('releaseLog()', () => {
     const consoleSpy = jest.spyOn(console, 'log');
     releaseLog(pokemon.eevee, computer.name);
     expect(consoleSpy).toHaveBeenCalledWith(
-      `Ash sent out ${colours.normalColour('Eevee')}!`
+      `\n\t${colours.trainerBorder(
+        '================================'
+      )}\n\tAsh sent out ${colours.normalColour(
+        'Eevee'
+      )}!\n\t${colours.trainerBorder('================================')}\n`
     );
 
     releaseLog(pokemon.charmander, computer.name);
     expect(consoleSpy).toHaveBeenCalledWith(
-      `Ash sent out ${colours.fireColour('Charmander')}!`
-    );
-
-    releaseLog(pokemon.squirtle, computer.name);
-    expect(consoleSpy).toHaveBeenCalledWith(
-      `Ash sent out ${colours.waterColour('Squirtle')}!`
+      `\n\t${colours.trainerBorder(
+        '================================'
+      )}\n\tAsh sent out ${colours.fireColour(
+        'Charmander'
+      )}!\n\t${colours.trainerBorder('================================')}\n`
     );
   });
   test('should not mutate input pokemon object', () => {

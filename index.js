@@ -12,6 +12,7 @@ const {
   catchPokemonForTrainer,
   computerTeamSelection,
   computerReleasePokemon,
+  releaseLog,
 } = require('./utils');
 const {
   playerPotions,
@@ -46,9 +47,12 @@ const main = async () => {
   // initialise battle and add selected pokemon to fight
   battle = new Battle(player, computer);
   const computerSentOut = computerReleasePokemon(computer.belt);
+  battle.selectPokemon(computer, computerSentOut);
+  releaseLog(battle.computerPokemon, computer.name);
+
   const playerSentOut = await playerReleasePokemon(player.belt);
   battle.selectPokemon(player, playerSentOut);
-  battle.selectPokemon(computer, computerSentOut);
+  releaseLog(battle.playerPokemon, player.name);
 
   //! remember you're in a branch/ticket now not main!! LOGGING FUNCTIONS
   round();
@@ -67,6 +71,7 @@ const roundFight = async (trainer) => {
     } else if (computerPokemon.hasFainted()) {
       battle.selectPokemon(computer, computerReleasePokemon(computer.belt));
       computerPokemon = battle.computerPokemon;
+      releaseLog(battle.computerPokemon, computer.name);
     } else if (!computerPokemon.hasFainted()) {
       await roundFight(computer);
     }
@@ -82,6 +87,7 @@ const roundFight = async (trainer) => {
     } else if (playerPokemon.hasFainted()) {
       const playerSentOut = await playerReleasePokemon(player.belt);
       battle.selectPokemon(player, playerSentOut);
+      releaseLog(battle.playerPokemon, player.name);
     }
   }
 };
@@ -102,6 +108,7 @@ const round = async () => {
 
       if (newPokemon !== '> BACK <') {
         battle.selectPokemon(player, newPokemon);
+        releaseLog(battle.playerPokemon, player.name);
         await roundFight(computer);
       } else {
         break; // break out of loop without setting gameOver to true to call round again

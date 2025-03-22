@@ -14,8 +14,7 @@ const lowHealth = chalk.hex('#EF4444');
 const fainted = chalk.hex('#6B7280');
 
 const battleBorder = chalk.hex('#7F1D1D');
-const playerBorder = chalk.bold.hex('#FF4500');
-const computerBorder = chalk.bold.hex('#4169E1');
+const trainerBorder = chalk.bold.hex('#4169E1');
 const generalText = chalk.hex('#FFCC00');
 
 module.exports = {
@@ -31,7 +30,6 @@ module.exports = {
   lowHealth,
   fainted,
   battleBorder,
-  playerBorder,
-  computerBorder,
+  trainerBorder,
   generalText,
 };
