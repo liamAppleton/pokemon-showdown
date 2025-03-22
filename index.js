@@ -26,6 +26,7 @@ let playerName;
 let player, computer;
 let battle;
 let gameOver = false;
+let turnOver = false;
 
 const main = async () => {
   playerName = await getPlayerName();
@@ -59,36 +60,39 @@ const main = async () => {
   round();
 };
 
-const roundFight = async (trainer) => {
+const playerFight = async () => {
   let { playerPokemon, computerPokemon } = battle;
 
-  if (!trainer.isComputer) {
-    battle.fight(playerPokemon, computerPokemon, computer);
-    fightLog(playerPokemon);
+  battle.fight(playerPokemon, computerPokemon, computer);
+  fightLog(playerPokemon);
 
-    if (computer.belt.length === 0) {
-      gameOver = true;
-    } else if (computerPokemon.hasFainted()) {
-      battle.selectPokemon(computer, computerReleasePokemon(computer.belt));
-      computerPokemon = battle.computerPokemon;
-      releaseLog(battle.computerPokemon, computer.name);
-    } else if (!computerPokemon.hasFainted()) {
-      await roundFight(computer);
-    }
+  if (computer.belt.length === 0) {
+    gameOver = true;
+  } else if (computerPokemon.hasFainted()) {
+    battle.selectPokemon(computer, computerReleasePokemon(computer.belt));
+    computerPokemon = battle.computerPokemon;
+    releaseLog(battle.computerPokemon, computer.name);
   }
+  turnOver = true;
+};
 
-  if (trainer.isComputer) {
-    battle.fight(computerPokemon, playerPokemon, player);
-    fightLog(computerPokemon);
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms)); // promise based delay function to act as a blocking version of setTimeout
 
-    if (player.belt.length === 0) {
-      gameOver = true;
-    } else if (playerPokemon.hasFainted()) {
-      const playerSentOut = await playerReleasePokemon(player.belt);
-      battle.selectPokemon(player, playerSentOut);
-      releaseLog(battle.playerPokemon, player.name);
-    }
+const computerFight = async () => {
+  await delay(1000);
+
+  let { playerPokemon, computerPokemon } = battle;
+  battle.fight(computerPokemon, playerPokemon, player);
+  fightLog(computerPokemon);
+
+  if (player.belt.length === 0) {
+    gameOver = true;
+  } else if (playerPokemon.hasFainted()) {
+    const playerSentOut = await playerReleasePokemon(player.belt);
+    battle.selectPokemon(player, playerSentOut);
+    releaseLog(battle.playerPokemon, player.name);
   }
+  turnOver = true;
 };
 
 const round = async () => {
@@ -96,7 +100,12 @@ const round = async () => {
     const playerMove = await playerTurn();
 
     if (playerMove === 'FIGHT') {
-      await roundFight(player);
+      turnOver = false; // ensures loop will be entered if player selects a new pokemon or uses a potion
+      while (!turnOver) {
+        await playerFight();
+        await computerFight();
+      }
+      turnOver = false;
     }
 
     if (playerMove === 'POKéMON') {
@@ -108,7 +117,7 @@ const round = async () => {
       if (newPokemon !== '> BACK <') {
         battle.selectPokemon(player, newPokemon);
         releaseLog(battle.playerPokemon, player.name);
-        await roundFight(computer);
+        await computerFight();
       } else {
         break; // break out of loop without setting gameOver to true to call round again
       }
@@ -123,7 +132,7 @@ const round = async () => {
 
         const index = player.bag.indexOf(potion);
         player.bag.splice(index, 1);
-        await roundFight(computer);
+        await computerFight();
       } else {
         break; // break out of loop without setting gameOver to true to call round again
       }
