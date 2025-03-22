@@ -12,4 +12,15 @@ const releaseLog = (pokemon, trainerName) => {
   );
 };
 
-module.exports = { releaseLog };
+const fightLog = (pokemon) => {
+  const colour = typeColourSelector(pokemon);
+  console.log(
+    `\n\t${colours.battleBorder(
+      '================================'
+    )}\n\t${colour(pokemon.name)} used ${colour(
+      pokemon.move
+    )}!\n\t${colours.battleBorder('================================')}\n`
+  );
+};
+
+module.exports = { releaseLog, fightLog };

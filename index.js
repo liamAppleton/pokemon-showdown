@@ -13,6 +13,7 @@ const {
   computerTeamSelection,
   computerReleasePokemon,
   releaseLog,
+  fightLog,
 } = require('./utils');
 const {
   playerPotions,
@@ -63,8 +64,7 @@ const roundFight = async (trainer) => {
 
   if (!trainer.isComputer) {
     battle.fight(playerPokemon, computerPokemon, computer);
-
-    console.log(computerPokemon, 'computer');
+    fightLog(playerPokemon);
 
     if (computer.belt.length === 0) {
       gameOver = true;
@@ -79,8 +79,7 @@ const roundFight = async (trainer) => {
 
   if (trainer.isComputer) {
     battle.fight(computerPokemon, playerPokemon, player);
-
-    console.log(playerPokemon, 'player');
+    fightLog(computerPokemon);
 
     if (player.belt.length === 0) {
       gameOver = true;
