@@ -2,12 +2,12 @@ const {
   pokemonLookup,
   deletePokemon,
   formatNames,
-} = require('./pokemon-data-functions');
+} = require('./data-functions');
 const {
   catchPokemonForTrainer,
   computerTeamSelection,
   computerReleasePokemon,
-} = require('./pokemon-logistics-functions');
+} = require('./logistics-functions');
 
 module.exports = {
   pokemonLookup,

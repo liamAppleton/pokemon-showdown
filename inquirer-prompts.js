@@ -1,6 +1,6 @@
 const inquirer = require('inquirer');
 const { pokemon } = require('./class-instances');
-const { pokemonNameList } = require('./game-data');
+const { pokemonNameList } = require('./data-files/game-data');
 const { deletePokemon, pokemonLookup } = require('./utils');
 
 const playerSelections = [];

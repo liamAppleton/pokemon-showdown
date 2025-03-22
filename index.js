@@ -18,7 +18,7 @@ const {
   playerPokeballs,
   computerPokeballs,
   pokemon,
-} = require('./game-data');
+} = require('./data-files/game-data');
 
 let playerName;
 let player, computer;
@@ -50,7 +50,7 @@ const main = async () => {
   battle.selectPokemon(player, playerSentOut);
   battle.selectPokemon(computer, computerSentOut);
 
-  //! remember you're in a branch/ticket now not main!!
+  //! remember you're in a branch/ticket now not main!! LOGGING FUNCTIONS
   round();
 };
 

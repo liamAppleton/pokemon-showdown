@@ -1,5 +1,5 @@
-const { pokemon, pokeballs, potions } = require('./class-instances');
-const { formatNames } = require('./utils');
+const { pokemon, pokeballs, potions } = require('../class-instances');
+const { formatNames } = require('../utils');
 
 const pokemonNameList = formatNames(pokemon, Object.keys(pokemon));
 const playerPotions = [
