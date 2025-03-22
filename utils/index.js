@@ -9,7 +9,7 @@ const {
   computerTeamSelection,
   computerReleasePokemon,
 } = require('./logistics-functions');
-const { computerReleaseLog } = require('./logging-functions');
+const { releaseLog } = require('./logging-functions');
 
 module.exports = {
   pokemonLookup,
@@ -19,5 +19,5 @@ module.exports = {
   catchPokemonForTrainer,
   computerTeamSelection,
   computerReleasePokemon,
-  computerReleaseLog,
+  releaseLog,
 };

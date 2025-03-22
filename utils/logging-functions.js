@@ -1,8 +1,8 @@
 const { typeColourSelector } = require('../utils/data-functions');
 
-const computerReleaseLog = (pokemon, computerName) => {
+const releaseLog = (pokemon, trainerName) => {
   const colour = typeColourSelector(pokemon);
-  console.log(`${computerName} sent out ${colour(pokemon.name)}!`);
+  console.log(`${trainerName} sent out ${colour(pokemon.name)}!`);
 };
 
-module.exports = { computerReleaseLog };
+module.exports = { releaseLog };
