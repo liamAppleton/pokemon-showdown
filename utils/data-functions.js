@@ -16,6 +16,8 @@ const typeColourSelector = ({ type }) => {
       return colours.grassColour;
     case 'Electric':
       return colours.electricColour;
+    case 'Flying':
+      return colours.flyingColour;
     case 'Fighting':
       return colours.fightingColour;
   }
