@@ -1,6 +1,24 @@
+const colours = require('../data-files/colours.js');
+
 const pokemonLookup = (pokemonList, pokemonName) => {
-  // console.log(pokemonList[pokemonName.toLowerCase()].type);
   return pokemonList[pokemonName.toLowerCase()];
+};
+
+const typeColourSelector = ({ type }) => {
+  switch (type) {
+    case 'Normal':
+      return colours.normalColour;
+    case 'Fire':
+      return colours.fireColour;
+    case 'Water':
+      return colours.waterColour;
+    case 'Grass':
+      return colours.grassColour;
+    case 'Electric':
+      return colours.electricColour;
+    case 'Fighting':
+      return colours.fightingColour;
+  }
 };
 
 const deletePokemon = (pokemonList, pokemonName) => {
@@ -26,4 +44,9 @@ const formatNames = (pokemonList, pokemonNames) => {
   });
 };
 
-module.exports = { pokemonLookup, deletePokemon, formatNames };
+module.exports = {
+  pokemonLookup,
+  typeColourSelector,
+  deletePokemon,
+  formatNames,
+};

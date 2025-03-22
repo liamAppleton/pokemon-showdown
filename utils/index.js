@@ -1,5 +1,6 @@
 const {
   pokemonLookup,
+  typeColourSelector,
   deletePokemon,
   formatNames,
 } = require('./data-functions');
@@ -11,6 +12,7 @@ const {
 
 module.exports = {
   pokemonLookup,
+  typeColourSelector,
   deletePokemon,
   formatNames,
   catchPokemonForTrainer,

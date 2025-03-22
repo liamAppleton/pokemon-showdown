@@ -1,19 +1,37 @@
 const chalk = require('chalk');
 
-exports.normalColour = chalk.hex('#A8A77A');
-exports.fireColour = chalk.hex('#EE8130');
-exports.waterColour = chalk.hex('#6390F0');
-exports.electricColour = chalk.hex('#F7D02C');
-exports.grassColour = chalk.hex('#7AC74C');
-exports.fightingColour = chalk.hex('#C22E28');
-exports.flyingColour = chalk.hex('#A98FF3');
+const normalColour = chalk.hex('#A8A77A');
+const fireColour = chalk.hex('#EE8130');
+const waterColour = chalk.hex('#6390F0');
+const electricColour = chalk.hex('#F7D02C');
+const grassColour = chalk.hex('#7AC74C');
+const fightingColour = chalk.hex('#C22E28');
+const flyingColour = chalk.hex('#A98FF3');
 
-exports.fullHealth = chalk.hex('#22C55E');
-exports.midHealth = chalk.hex('#EAB308');
-exports.lowHealth = chalk.hex('#EF4444');
-exports.fainted = chalk.hex('#6B7280');
+const fullHealth = chalk.hex('#22C55E');
+const midHealth = chalk.hex('#EAB308');
+const lowHealth = chalk.hex('#EF4444');
+const fainted = chalk.hex('#6B7280');
 
-exports.battleBorder = chalk.hex('#7F1D1D');
-exports.trainerBorder = chalk.bold.hex('#FF4500');
-exports.opponentBorder = chalk.bold.hex('#4169E1');
-exports.generalText = chalk.hex('#FFCC00');
+const battleBorder = chalk.hex('#7F1D1D');
+const playerBorder = chalk.bold.hex('#FF4500');
+const computerBorder = chalk.bold.hex('#4169E1');
+const generalText = chalk.hex('#FFCC00');
+
+module.exports = {
+  normalColour,
+  fireColour,
+  waterColour,
+  electricColour,
+  grassColour,
+  fightingColour,
+  flyingColour,
+  fullHealth,
+  midHealth,
+  lowHealth,
+  fainted,
+  battleBorder,
+  playerBorder,
+  computerBorder,
+  generalText,
+};
