@@ -1,6 +1,5 @@
 const { typeColourSelector } = require('../utils/data-functions');
 const colours = require('../data-files/colours');
-const { pokeballs } = require('../class-instances');
 
 const releaseLog = (pokemon, trainerName) => {
   const colour = typeColourSelector(pokemon);
