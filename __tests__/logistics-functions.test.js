@@ -4,7 +4,6 @@ const {
   computerReleasePokemon,
 } = require('../utils');
 const {
-  Pokemon,
   NormalPokemon,
   FirePokemon,
   WaterPokemon,

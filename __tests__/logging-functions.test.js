@@ -1,6 +1,18 @@
-const { releaseLog, fightLog, healthBar } = require('../utils');
+const {
+  releaseLog,
+  pokeballsLog,
+  fightLog,
+  healthBar,
+  catchPokemonForTrainer,
+} = require('../utils');
 const { pokemon } = require('../data-files/game-data');
-const { Trainer } = require('../classes');
+const {
+  NormalPokemon,
+  FirePokemon,
+  WaterPokemon,
+  Trainer,
+  Pokeball,
+} = require('../classes');
 const colours = require('../data-files/colours');
 
 let consoleSpy;
@@ -107,8 +119,74 @@ describe('healthBar()', () => {
     expect(pokemon.eevee).toEqual(inputCopy);
   });
 });
-//! finish testing this function before merging branch
 
 describe('pokeballsLog()', () => {
-  //! finish testing
+  let lopunny, charizard, squirtle, eevee, ninetails, blastoise;
+  let pokeballArr, pokemonArr;
+  let pb1, pb2, pb3, pb4, pb5, pb6;
+  let trainer;
+  let mock;
+
+  beforeEach(() => {
+    mock = jest.fn((trainer) => {
+      const { pokeballRed } = colours;
+      const pokeballArr = Array(trainer.belt.length).fill(pokeballRed('◯'));
+      const missingPokeballsArray = Array(6 - trainer.belt.length).fill('◯');
+      const pokeballs = pokeballArr.concat(missingPokeballsArray);
+      return `\n\t${trainer.name}\n\t${pokeballs.join(' ')}`;
+    }); // solves issue with ansi characters not allowing tests to pass
+
+    lopunny = new NormalPokemon('Lopunny', 'Tackle', 100, 20);
+    charizard = new FirePokemon('Charizard', 'Ember', 100, 20);
+    squirtle = new WaterPokemon('Squirtle', 'Hydro', 100, 20);
+    eevee = new NormalPokemon('Eevee', 'Tackle', 100, 20);
+    ninetails = new FirePokemon('Ninetails', 'Ember', 100, 20);
+    blastoise = new WaterPokemon('Blastoise', 'Hydro Pump', 100, 20);
+
+    pokemonArr = [lopunny, charizard, squirtle, eevee, ninetails, blastoise];
+
+    pb1 = new Pokeball();
+    pb2 = new Pokeball();
+    pb3 = new Pokeball();
+    pb4 = new Pokeball();
+    pb5 = new Pokeball();
+    pb6 = new Pokeball();
+
+    pokeballArr = [pb1, pb2, pb3, pb4, pb5, pb6];
+
+    trainer = new Trainer('Ash');
+    trainer.belt = catchPokemonForTrainer(pokemonArr, pokeballArr);
+  });
+
+  describe("should log the number of pokeballs remaining in the trainer's belt", () => {
+    test('6 pokeballs', () => {
+      const expected = mock(trainer);
+      pokeballsLog(trainer);
+      expect(consoleSpy).toHaveBeenCalledWith(expected);
+    });
+    test('4 pokeballs', () => {
+      trainer.belt.splice(0, 2);
+
+      const expected = mock(trainer);
+      pokeballsLog(trainer);
+      expect(consoleSpy).toHaveBeenCalledWith(expected);
+    });
+    test('2 pokeballs', () => {
+      trainer.belt.splice(0, 4);
+      const expected = mock(trainer);
+      pokeballsLog(trainer);
+      expect(consoleSpy).toHaveBeenCalledWith(expected);
+    });
+    test('0 pokeballs', () => {
+      trainer.belt = [];
+      const expected = mock(trainer);
+      pokeballsLog(trainer);
+      expect(consoleSpy).toHaveBeenCalledWith(expected);
+    });
+  });
+  test('should not mutate input trainer object', () => {
+    const inputCopy = { ...trainer };
+    pokeballsLog(trainer);
+    expect(trainer).toEqual(inputCopy);
+  });
 });
