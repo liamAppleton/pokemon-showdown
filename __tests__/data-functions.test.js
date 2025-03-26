@@ -1,5 +1,11 @@
 const { pokemon } = require('../class-instances');
-const { pokemonLookup, deletePokemon, formatNames } = require('../utils');
+const colours = require('../data-files/colours');
+const {
+  pokemonLookup,
+  typeColourSelector,
+  deletePokemon,
+  formatNames,
+} = require('../utils');
 
 describe('pokemonLookup()', () => {
   test('should return a pokemon instance with same name as input', () => {
@@ -9,6 +15,22 @@ describe('pokemonLookup()', () => {
     const inputCopy = { ...pokemon };
     pokemonLookup(pokemon, 'Eevee');
     expect(pokemon).toEqual(inputCopy);
+  });
+});
+
+describe('typeColourSelector()', () => {
+  test('should return a function', () => {
+    expect(typeof typeColourSelector(pokemon.eevee)).toBe('function');
+  });
+  test("should the correct function for the passing pokemon's type", () => {
+    expect(typeColourSelector(pokemon.eevee)).toBe(colours.normalColour);
+    expect(typeColourSelector(pokemon.charmander)).toBe(colours.fireColour);
+    expect(typeColourSelector(pokemon.squirtle)).toBe(colours.waterColour);
+  });
+  test('should not mutate the input object', () => {
+    const inputCopy = { ...pokemon.eevee };
+    typeColourSelector(pokemon.eevee);
+    expect(pokemon.eevee).toEqual(inputCopy);
   });
 });
 
@@ -30,7 +52,7 @@ describe('formatNames()', () => {
       'hitmonchan',
       'zubat',
     ];
-    expect(formatNames(input)).toEqual([
+    expect(formatNames(pokemon, input)).toEqual([
       '🐻 Eevee',
       '🌊 Poliwag',
       '🔥 Charmander',
@@ -43,11 +65,11 @@ describe('formatNames()', () => {
   test('should not mutate input array', () => {
     const input = ['eevee', 'poliwag', 'charmander'];
     const inputCopy = ['eevee', 'poliwag', 'charmander'];
-    formatNames(input);
+    formatNames(pokemon, input);
     expect(input).toEqual(inputCopy);
   });
   test('should return an array with a new reference to the input array', () => {
     const input = ['eevee', 'poliwag', 'charmander'];
-    expect(formatNames(input)).not.toBe(input);
+    expect(formatNames(pokemon, input)).not.toBe(input);
   });
 });

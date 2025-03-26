@@ -1,19 +1,31 @@
 const {
   pokemonLookup,
+  typeColourSelector,
   deletePokemon,
   formatNames,
-} = require('./pokemon-data-functions');
+} = require('./data-functions');
 const {
   catchPokemonForTrainer,
   computerTeamSelection,
   computerReleasePokemon,
-} = require('./pokemon-logistics-functions');
+} = require('./logistics-functions');
+const {
+  releaseLog,
+  pokeballsLog,
+  fightLog,
+  healthBar,
+} = require('./logging-functions');
 
 module.exports = {
   pokemonLookup,
+  typeColourSelector,
   deletePokemon,
   formatNames,
   catchPokemonForTrainer,
   computerTeamSelection,
   computerReleasePokemon,
+  releaseLog,
+  pokeballsLog,
+  fightLog,
+  healthBar,
 };

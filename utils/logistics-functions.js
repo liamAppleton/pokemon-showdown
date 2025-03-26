@@ -1,4 +1,4 @@
-const { pokemonLookup, deletePokemon } = require('./pokemon-data-functions');
+const { pokemonLookup, deletePokemon } = require('./data-functions');
 
 const catchPokemonForTrainer = (pokemonArr, pokeballArr) => {
   pokeballArr.forEach((pokeball, i) => {
