@@ -57,7 +57,7 @@ const main = async () => {
 
   // initialise computer
   computer = new Trainer(selectComputerName(trainerNames), true);
-  computer.belt = computerTeamSelection(computerPokeballs, pokemon); //! length of release log border needs to depend on name + pokemon name etc length
+  computer.belt = computerTeamSelection(computerPokeballs, pokemon);
 
   // initialise battle and add selected pokemon to fight
   battle = new Battle(player, computer);
