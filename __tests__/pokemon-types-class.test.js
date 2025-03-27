@@ -62,7 +62,7 @@ describe('FirePokemon Class', () => {
       test('should return 2 when passed a grass pokemon', () => {
         expect(charizard.calculateDamageMultiplier(leafeon)).toBe(2);
       });
-      test('should return 0.5 when passed fire or water pokemon', () => {
+      test('should return 0.5 when passed a fire or water pokemon', () => {
         expect(charizard.calculateDamageMultiplier(squirtle)).toBe(0.5);
         expect(charizard.calculateDamageMultiplier(charizard)).toBe(0.5);
       });
@@ -92,7 +92,7 @@ describe('WaterPokemon Class', () => {
       test('should return 2 when passed a fire pokemon', () => {
         expect(squirtle.calculateDamageMultiplier(charizard)).toBe(2);
       });
-      test('should return 0.5 when passed water or grass pokemon', () => {
+      test('should return 0.5 when passed a water or grass pokemon', () => {
         expect(squirtle.calculateDamageMultiplier(squirtle)).toBe(0.5);
         expect(squirtle.calculateDamageMultiplier(leafeon)).toBe(0.5);
       });
@@ -122,7 +122,7 @@ describe('GrassPokemon Class', () => {
       test('should return 2 when passed a water pokemon', () => {
         expect(leafeon.calculateDamageMultiplier(squirtle)).toBe(2);
       });
-      test('should return 0.5 when passed grass or fire pokemon', () => {
+      test('should return 0.5 when passed a grass or fire pokemon', () => {
         expect(leafeon.calculateDamageMultiplier(leafeon)).toBe(0.5);
         expect(leafeon.calculateDamageMultiplier(charizard)).toBe(0.5);
       });
@@ -153,7 +153,7 @@ describe('ElectricPokemon Class', () => {
         expect(jolteon.calculateDamageMultiplier(squirtle)).toBe(2);
         expect(jolteon.calculateDamageMultiplier(fearow)).toBe(2);
       });
-      test('should return 0.5 when passed electric or grass pokemon', () => {
+      test('should return 0.5 when passed a electric or grass pokemon', () => {
         expect(jolteon.calculateDamageMultiplier(jolteon)).toBe(0.5);
         expect(jolteon.calculateDamageMultiplier(leafeon)).toBe(0.5);
       });
@@ -184,7 +184,7 @@ describe('FlyingPokemon Class', () => {
         expect(fearow.calculateDamageMultiplier(leafeon)).toBe(2);
         expect(fearow.calculateDamageMultiplier(machamp)).toBe(2);
       });
-      test('should return 0.5 when passed electric pokemon', () => {
+      test('should return 0.5 when passed an electric pokemon', () => {
         expect(fearow.calculateDamageMultiplier(jolteon)).toBe(0.5);
       });
       test('should return 1 when passed any other pokemon', () => {
@@ -213,7 +213,7 @@ describe('FightingPokemon Class', () => {
       test('should return 2 when passed a normal pokemon', () => {
         expect(machamp.calculateDamageMultiplier(lopunny)).toBe(2);
       });
-      test('should return 0.5 when passed flying pokemon', () => {
+      test('should return 0.5 when passed a flying pokemon', () => {
         expect(machamp.calculateDamageMultiplier(fearow)).toBe(0.5);
       });
       test('should return 1 when passed any other pokemon', () => {

@@ -1,4 +1,4 @@
-# Pokemon Showdown
+# Pokemon Showdown (Poketerm)
 
 ---
 
@@ -8,7 +8,9 @@ Test your skills in this **Pokémon battler command line game**! Be sure to choo
 
 ## To play
 
-Run: **npx pokemon-battler**
+Run: **npx poketerm**
+
+Node v23.6.0 required to play
 
 ## About this project
 

@@ -24,7 +24,7 @@ describe('typeColourSelector()', () => {
   test('should return a function', () => {
     expect(typeof typeColourSelector(pokemon.eevee)).toBe('function');
   });
-  test("should the correct function for the passing pokemon's type", () => {
+  test("should return the correct colour function for the passing pokemon's type", () => {
     expect(typeColourSelector(pokemon.eevee)).toBe(colours.normalColour);
     expect(typeColourSelector(pokemon.charmander)).toBe(colours.fireColour);
     expect(typeColourSelector(pokemon.squirtle)).toBe(colours.waterColour);

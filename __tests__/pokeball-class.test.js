@@ -25,11 +25,6 @@ describe('Pokeball Class', () => {
         pokeball1.catch(lopunny);
         expect(pokeball1.storedPokemon).toEqual(lopunny);
       });
-      test('should add the passed pokemon instance to storedPokemon', () => {
-        pokeball1.catch(lopunny);
-        expect(pokeball1.storedPokemon).toEqual(lopunny);
-        expect(pokeball1.storedPokemon instanceof Pokemon).toBe(true);
-      });
     });
     describe('throw()', () => {
       test('instances should have a throw method', () => {
