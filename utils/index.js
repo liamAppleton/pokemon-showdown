@@ -14,6 +14,7 @@ const {
   pokeballsLog,
   fightLog,
   healthBar,
+  trainerCardLog,
 } = require('./logging-functions');
 
 module.exports = {
@@ -28,4 +29,5 @@ module.exports = {
   pokeballsLog,
   fightLog,
   healthBar,
+  trainerCardLog,
 };

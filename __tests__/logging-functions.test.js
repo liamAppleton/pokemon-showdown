@@ -24,20 +24,20 @@ describe('releaseLog()', () => {
     const computer = new Trainer('Ash', true);
     releaseLog(pokemon.eevee, computer.name);
     expect(consoleSpy).toHaveBeenCalledWith(
-      `\n\t${colours.trainerBorder(
+      `\n\t${colours.releaseBorder(
         '=============================='
       )}\n\tAsh sent out ${colours.normalColour(
         'Eevee'
-      )}!\n\t${colours.trainerBorder('==============================')}`
+      )}!\n\t${colours.releaseBorder('==============================')}`
     );
 
     releaseLog(pokemon.charmander, computer.name);
     expect(consoleSpy).toHaveBeenCalledWith(
-      `\n\t${colours.trainerBorder(
+      `\n\t${colours.releaseBorder(
         '=============================='
       )}\n\tAsh sent out ${colours.fireColour(
         'Charmander'
-      )}!\n\t${colours.trainerBorder('==============================')}`
+      )}!\n\t${colours.releaseBorder('==============================')}`
     );
   });
   test('should not mutate input pokemon object', () => {
@@ -71,45 +71,45 @@ describe('healthBar()', () => {
     test('hitPoints 100%', () => {
       healthBar(pokemon.eevee);
       expect(consoleSpy).toHaveBeenCalledWith(
-        `\n\t${'Eevee'}\n\t${colours.fullHealth('████████████████████')}  ${
+        `\t${'Eevee'}\n\t${colours.fullHealth('████████████████████')}  ${
           pokemon.eevee.hitPoints
-        } / ${pokemon.eevee.maxHitPoints}\n`
+        } / ${pokemon.eevee.maxHitPoints}`
       );
     });
     test('hitPoints 80%', () => {
       pokemon.eevee.takeDamage(14);
       healthBar(pokemon.eevee);
       expect(consoleSpy).toHaveBeenCalledWith(
-        `\n\t${'Eevee'}\n\t${colours.highMidHealth('████████████████░░░░')}  ${
+        `\t${'Eevee'}\n\t${colours.highMidHealth('████████████████░░░░')}  ${
           pokemon.eevee.hitPoints
-        } / ${pokemon.eevee.maxHitPoints}\n`
+        } / ${pokemon.eevee.maxHitPoints}`
       );
     });
     test('hitPoints 60%', () => {
       pokemon.eevee.takeDamage(14);
       healthBar(pokemon.eevee);
       expect(consoleSpy).toHaveBeenCalledWith(
-        `\n\t${'Eevee'}\n\t${colours.midHealth('████████████░░░░░░░░')}  ${
+        `\t${'Eevee'}\n\t${colours.midHealth('████████████░░░░░░░░')}  ${
           pokemon.eevee.hitPoints
-        } / ${pokemon.eevee.maxHitPoints}\n`
+        } / ${pokemon.eevee.maxHitPoints}`
       );
     });
     test('hitPoints 20%', () => {
       pokemon.eevee.takeDamage(28);
       healthBar(pokemon.eevee);
       expect(consoleSpy).toHaveBeenCalledWith(
-        `\n\t${'Eevee'}\n\t${colours.lowHealth('████░░░░░░░░░░░░░░░░')}  ${
+        `\t${'Eevee'}\n\t${colours.lowHealth('████░░░░░░░░░░░░░░░░')}  ${
           pokemon.eevee.hitPoints
-        } / ${pokemon.eevee.maxHitPoints}\n`
+        } / ${pokemon.eevee.maxHitPoints}`
       );
     });
     test('hitPoints 0%', () => {
       pokemon.eevee.takeDamage(14);
       healthBar(pokemon.eevee);
       expect(consoleSpy).toHaveBeenCalledWith(
-        `\n\t${'Eevee'}\n\t${colours.fainted('░░░░░░░░░░░░░░░░░░░░')}  ${
+        `\t${'Eevee'}\n\t${colours.fainted('░░░░░░░░░░░░░░░░░░░░')}  ${
           pokemon.eevee.hitPoints
-        } / ${pokemon.eevee.maxHitPoints}\n`
+        } / ${pokemon.eevee.maxHitPoints}`
       );
     });
   });
