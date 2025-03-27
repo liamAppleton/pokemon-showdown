@@ -33,14 +33,17 @@ let gameOver = false;
 let turnOver = false;
 
 const main = async () => {
+  // welcome message log
   console.log(
     `\n\t${pokeballRed('==============================')}\n\t${generalText(
       `Welcome to Pokemon Showdown!`
     )}\n\t${pokeballRed('==============================')}\n\t`
   );
 
+  // get player name
   playerName = await getPlayerName();
 
+  // get player pokemon selections
   let i = 0;
   while (i < 6) {
     await initialSelection();
@@ -126,6 +129,7 @@ const computerFight = async () => {
   turnOver = true;
 };
 
+// handles all game flow / looping logic
 const round = async () => {
   while (!gameOver) {
     const playerMove = await playerTurn();
@@ -179,6 +183,7 @@ const round = async () => {
     round();
   } // round will be called continuously based on player action until gameOver is set to true
 
+  // endgame log
   const winner = player.belt.length !== 0 ? player.name : computer.name;
   console.log(
     `\n\t${pokeballRed('==============================')}\n\t${generalText(

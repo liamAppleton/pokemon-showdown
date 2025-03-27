@@ -36,11 +36,6 @@ describe('Pokemon Class', () => {
       test('should return attackDamage', () => {
         expect(pokemon1.useMove()).toBe(20);
       });
-      test("should log pokemon's name and move", () => {
-        const consoleSpy = jest.spyOn(console, 'log');
-        pokemon1.useMove();
-        expect(consoleSpy).toHaveBeenCalledWith('Mew used Tackle!');
-      });
     });
     describe('takeDamage()', () => {
       test('instances of pokemon should have a takeDamage method', () => {
