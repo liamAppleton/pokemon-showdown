@@ -98,7 +98,7 @@ const playerFight = async () => {
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms)); // promise based delay function to act as a blocking version of setTimeout
 
 const computerFight = async () => {
-  await delay(1);
+  await delay(1000);
   if (computer.belt.length === 0) {
     turnOver = true;
     return;
