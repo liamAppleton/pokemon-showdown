@@ -13,9 +13,7 @@ const {
   computerTeamSelection,
   computerReleasePokemon,
   releaseLog,
-  pokeballsLog,
   fightLog,
-  healthBar,
   trainerCardLog,
 } = require('./utils');
 const {
@@ -24,7 +22,7 @@ const {
   computerPokeballs,
   pokemon,
 } = require('./data-files/game-data');
-const { pokeballRed } = require('./data-files/colours');
+const { pokeballRed, generalText } = require('./data-files/colours');
 
 let playerName;
 let player, computer;
@@ -87,7 +85,7 @@ const playerFight = async () => {
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms)); // promise based delay function to act as a blocking version of setTimeout
 
 const computerFight = async () => {
-  await delay(1000);
+  await delay(1);
   if (computer.belt.length === 0) {
     turnOver = true;
     return;
@@ -173,7 +171,12 @@ const round = async () => {
     round();
   } // round will be called continuously based on player action until gameOver is set to true
 
-  //! endgame message
+  const winner = player.belt.length !== 0 ? player.name : computer.name;
+  console.log(
+    `\n\t${pokeballRed('==============================')}\n\t${generalText(
+      `${winner} wins!`
+    )}\n\t${pokeballRed('==============================')}`
+  );
 };
 
 main();
