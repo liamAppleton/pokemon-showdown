@@ -12,10 +12,10 @@ const {
   catchPokemonForTrainer,
   computerTeamSelection,
   computerReleasePokemon,
+  selectComputerName,
   releaseLog,
-  pokeballsLog,
   fightLog,
-  healthBar,
+  trainerCardLog,
 } = require('./utils');
 const {
   playerPotions,
@@ -23,7 +23,8 @@ const {
   computerPokeballs,
   pokemon,
 } = require('./data-files/game-data');
-const { pokeballRed } = require('./data-files/colours');
+const { pokeballRed, generalText } = require('./data-files/colours');
+const trainerNames = require('./data-files/trainer-names');
 
 let playerName;
 let player, computer;
@@ -32,6 +33,12 @@ let gameOver = false;
 let turnOver = false;
 
 const main = async () => {
+  console.log(
+    `\n\t${pokeballRed('==============================')}\n\t${generalText(
+      `Welcome to Pokemon Showdown!`
+    )}\n\t${pokeballRed('==============================')}\n\t`
+  );
+
   playerName = await getPlayerName();
 
   let i = 0;
@@ -49,7 +56,7 @@ const main = async () => {
   player.bag = playerPotions;
 
   // initialise computer
-  computer = new Trainer('Computer', true);
+  computer = new Trainer(selectComputerName(trainerNames), true);
   computer.belt = computerTeamSelection(computerPokeballs, pokemon);
 
   // initialise battle and add selected pokemon to fight
@@ -57,18 +64,15 @@ const main = async () => {
   const computerSentOut = computerReleasePokemon(computer.belt);
   battle.selectPokemon(computer, computerSentOut);
 
-  pokeballsLog(computer);
   releaseLog(battle.computerPokemon, computer.name);
-  healthBar(battle.computerPokemon);
+  trainerCardLog(computer, battle.computerPokemon);
 
   const playerSentOut = await playerReleasePokemon(player.belt);
   battle.selectPokemon(player, playerSentOut);
 
-  pokeballsLog(player);
   releaseLog(battle.playerPokemon, player.name);
-  healthBar(battle.playerPokemon);
+  trainerCardLog(player, battle.playerPokemon);
 
-  //! remember you're in a branch/ticket now not main!! LOGGING FUNCTIONS
   round();
 };
 
@@ -77,10 +81,11 @@ const playerFight = async () => {
 
   battle.fight(playerPokemon, computerPokemon, computer);
   fightLog(playerPokemon);
-  healthBar(computerPokemon);
+  trainerCardLog(computer, computerPokemon);
 
   if (computer.belt.length === 0) {
     gameOver = true;
+    return;
   }
   turnOver = true;
 };
@@ -88,7 +93,11 @@ const playerFight = async () => {
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms)); // promise based delay function to act as a blocking version of setTimeout
 
 const computerFight = async () => {
-  await delay(1000);
+  await delay(1);
+  if (computer.belt.length === 0) {
+    turnOver = true;
+    return;
+  }
 
   let { playerPokemon, computerPokemon } = battle;
 
@@ -96,15 +105,14 @@ const computerFight = async () => {
     battle.selectPokemon(computer, computerReleasePokemon(computer.belt));
     computerPokemon = battle.computerPokemon;
 
-    pokeballsLog(computer);
     releaseLog(battle.computerPokemon, computer.name);
-    healthBar(computerPokemon);
+    trainerCardLog(computer, computerPokemon);
     return;
   } // flips turn back to player so computer can't attack immediately after sending out a pokemon
 
   battle.fight(computerPokemon, playerPokemon, player);
   fightLog(computerPokemon);
-  healthBar(playerPokemon);
+  trainerCardLog(player, playerPokemon);
 
   if (player.belt.length === 0) {
     gameOver = true;
@@ -112,9 +120,8 @@ const computerFight = async () => {
     const playerSentOut = await playerReleasePokemon(player.belt);
     battle.selectPokemon(player, playerSentOut);
 
-    pokeballsLog(player);
     releaseLog(battle.playerPokemon, player.name);
-    healthBar(battle.playerPokemon);
+    trainerCardLog(player, battle.playerPokemon);
   }
   turnOver = true;
 };
@@ -140,9 +147,8 @@ const round = async () => {
 
       if (newPokemon !== '> BACK <') {
         battle.selectPokemon(player, newPokemon);
-        pokeballsLog(player);
         releaseLog(battle.playerPokemon, player.name);
-        healthBar(battle.playerPokemon);
+        trainerCardLog(player, battle.playerPokemon);
         await computerFight();
       } else {
         break; // break out of loop without setting gameOver to true to call round again
@@ -155,8 +161,7 @@ const round = async () => {
       if (selectedPotion !== '> BACK <') {
         const potion = player.bag.find((pot) => pot.name === selectedPotion);
         potion.use(battle.playerPokemon);
-        healthBar(battle.playerPokemon);
-
+        trainerCardLog(player, battle.playerPokemon);
         const index = player.bag.indexOf(potion);
         player.bag.splice(index, 1);
         await computerFight();
@@ -173,6 +178,13 @@ const round = async () => {
   if (!gameOver) {
     round();
   } // round will be called continuously based on player action until gameOver is set to true
+
+  const winner = player.belt.length !== 0 ? player.name : computer.name;
+  console.log(
+    `\n\t${pokeballRed('==============================')}\n\t${generalText(
+      `${winner} wins!`
+    )}\n\t${pokeballRed('==============================')}`
+  );
 };
 
 main();

@@ -15,7 +15,8 @@ const lowHealth = chalk.hex('#FF0000');
 const fainted = chalk.hex('#555555');
 
 const battleBorder = chalk.hex('#7F1D1D');
-const trainerBorder = chalk.bold.hex('#4169E1');
+const trainerBorder = chalk.bold.hex('#707070');
+const releaseBorder = chalk.hex('#4169E1');
 const generalText = chalk.hex('#FFCC00');
 const pokeballRed = chalk.hex('#ee1515');
 
@@ -34,6 +35,7 @@ module.exports = {
   fainted,
   battleBorder,
   trainerBorder,
+  releaseBorder,
   generalText,
   pokeballRed,
 };

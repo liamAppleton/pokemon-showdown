@@ -3,12 +3,14 @@ const colours = require('../data-files/colours');
 
 const releaseLog = (pokemon, trainerName) => {
   const colour = typeColourSelector(pokemon);
+  const statement = `${trainerName} sent out ${colour(pokemon.name)}!`;
+  const borderLength = statement.length > 53 ? 40 : 30;
+  const border = Array(borderLength).fill('=').join('');
+
   console.log(
-    `\n\t${colours.trainerBorder(
-      '=============================='
-    )}\n\t${trainerName} sent out ${colour(
+    `\n\t${colours.releaseBorder(border)}\n\t${trainerName} sent out ${colour(
       pokemon.name
-    )}!\n\t${colours.trainerBorder('==============================')}`
+    )}!\n\t${colours.releaseBorder(border)}`
   );
 };
 
@@ -49,10 +51,25 @@ const healthBar = ({ hitPoints, maxHitPoints, name }) => {
   if (percentage <= 0) colour = fainted;
 
   console.log(
-    `\n\t${name}\n\t${colour(healthDisplay)}  ${
+    `\t${name}\n\t${colour(healthDisplay)}  ${
       hitPoints <= 0 ? 0 : hitPoints
-    } / ${maxHitPoints}\n`
+    } / ${maxHitPoints}`
   );
 };
 
-module.exports = { releaseLog, pokeballsLog, fightLog, healthBar };
+const trainerCardLog = (trainer, pokemon) => {
+  pokeballsLog(trainer);
+  console.log(`\t${colours.trainerBorder('==============================')}\t`);
+  healthBar(pokemon);
+  console.log(
+    `\t${colours.trainerBorder('==============================')}\n\t`
+  );
+};
+
+module.exports = {
+  releaseLog,
+  pokeballsLog,
+  fightLog,
+  healthBar,
+  trainerCardLog,
+};

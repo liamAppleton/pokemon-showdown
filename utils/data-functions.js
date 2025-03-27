@@ -46,9 +46,15 @@ const formatNames = (pokemonList, pokemonNames) => {
   });
 };
 
+const selectComputerName = (trainerNames) => {
+  const index = Math.floor(Math.random() * trainerNames.length);
+  return trainerNames[index];
+};
+
 module.exports = {
   pokemonLookup,
   typeColourSelector,
   deletePokemon,
   formatNames,
+  selectComputerName,
 };

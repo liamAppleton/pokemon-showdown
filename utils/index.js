@@ -3,6 +3,7 @@ const {
   typeColourSelector,
   deletePokemon,
   formatNames,
+  selectComputerName,
 } = require('./data-functions');
 const {
   catchPokemonForTrainer,
@@ -14,6 +15,7 @@ const {
   pokeballsLog,
   fightLog,
   healthBar,
+  trainerCardLog,
 } = require('./logging-functions');
 
 module.exports = {
@@ -21,6 +23,7 @@ module.exports = {
   typeColourSelector,
   deletePokemon,
   formatNames,
+  selectComputerName,
   catchPokemonForTrainer,
   computerTeamSelection,
   computerReleasePokemon,
@@ -28,4 +31,5 @@ module.exports = {
   pokeballsLog,
   fightLog,
   healthBar,
+  trainerCardLog,
 };
