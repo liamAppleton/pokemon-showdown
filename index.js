@@ -31,6 +31,12 @@ let gameOver = false;
 let turnOver = false;
 
 const main = async () => {
+  console.log(
+    `\n\t${pokeballRed('==============================')}\n\t${generalText(
+      `Welcome to Pokemon Showdown!`
+    )}\n\t${pokeballRed('==============================')}\n\t`
+  );
+
   playerName = await getPlayerName();
 
   let i = 0;
