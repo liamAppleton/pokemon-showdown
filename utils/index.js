@@ -3,6 +3,7 @@ const {
   typeColourSelector,
   deletePokemon,
   formatNames,
+  selectComputerName,
 } = require('./data-functions');
 const {
   catchPokemonForTrainer,
@@ -22,6 +23,7 @@ module.exports = {
   typeColourSelector,
   deletePokemon,
   formatNames,
+  selectComputerName,
   catchPokemonForTrainer,
   computerTeamSelection,
   computerReleasePokemon,

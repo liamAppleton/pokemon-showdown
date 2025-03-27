@@ -1,10 +1,12 @@
 const { pokemon } = require('../class-instances');
 const colours = require('../data-files/colours');
+const trainerNames = require('../data-files/trainer-names');
 const {
   pokemonLookup,
   typeColourSelector,
   deletePokemon,
   formatNames,
+  selectComputerName,
 } = require('../utils');
 
 describe('pokemonLookup()', () => {
@@ -71,5 +73,34 @@ describe('formatNames()', () => {
   test('should return an array with a new reference to the input array', () => {
     const input = ['eevee', 'poliwag', 'charmander'];
     expect(formatNames(pokemon, input)).not.toBe(input);
+  });
+});
+
+describe('selectComputerName()', () => {
+  let randomSpy;
+  beforeEach(() => {
+    randomSpy = jest.spyOn(Math, 'random');
+  });
+  describe('should return a randomly selected trainer name', () => {
+    test('random value 0.1', () => {
+      randomSpy.mockReturnValue(0.1);
+      const expected = trainerNames[Math.floor(0.1 * trainerNames.length)];
+      expect(selectComputerName(trainerNames)).toBe(expected);
+    });
+    test('random value 0.3', () => {
+      randomSpy.mockReturnValue(0.3);
+      const expected = trainerNames[Math.floor(0.3 * trainerNames.length)];
+      expect(selectComputerName(trainerNames)).toBe(expected);
+    });
+    test('random value 0.8', () => {
+      randomSpy.mockReturnValue(0.8);
+      const expected = trainerNames[Math.floor(0.8 * trainerNames.length)];
+      expect(selectComputerName(trainerNames)).toBe(expected);
+    });
+  });
+  test('should not mutate input trainNames array', () => {
+    const inputCopy = [...trainerNames];
+    selectComputerName(trainerNames);
+    expect(trainerNames).toEqual(inputCopy);
   });
 });
