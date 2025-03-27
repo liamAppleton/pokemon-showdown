@@ -4,11 +4,11 @@ const colours = require('../data-files/colours');
 const releaseLog = (pokemon, trainerName) => {
   const colour = typeColourSelector(pokemon);
   console.log(
-    `\n\t${colours.trainerBorder(
+    `\n\t${colours.releaseBorder(
       '=============================='
     )}\n\t${trainerName} sent out ${colour(
       pokemon.name
-    )}!\n\t${colours.trainerBorder('==============================')}`
+    )}!\n\t${colours.releaseBorder('==============================')}`
   );
 };
 
@@ -49,10 +49,25 @@ const healthBar = ({ hitPoints, maxHitPoints, name }) => {
   if (percentage <= 0) colour = fainted;
 
   console.log(
-    `\n\t${name}\n\t${colour(healthDisplay)}  ${
+    `\t${name}\n\t${colour(healthDisplay)}  ${
       hitPoints <= 0 ? 0 : hitPoints
-    } / ${maxHitPoints}\n`
+    } / ${maxHitPoints}`
   );
 };
 
-module.exports = { releaseLog, pokeballsLog, fightLog, healthBar };
+const trainerCardLog = (trainer, pokemon) => {
+  pokeballsLog(trainer);
+  console.log(`\t${colours.trainerBorder('==============================')}\t`);
+  healthBar(pokemon);
+  console.log(
+    `\t${colours.trainerBorder('==============================')}\n\t`
+  );
+};
+
+module.exports = {
+  releaseLog,
+  pokeballsLog,
+  fightLog,
+  healthBar,
+  trainerCardLog,
+};
