@@ -3,12 +3,14 @@ const colours = require('../data-files/colours');
 
 const releaseLog = (pokemon, trainerName) => {
   const colour = typeColourSelector(pokemon);
+  const statement = `${trainerName} sent out ${colour(pokemon.name)}!`;
+  const borderLength = statement.length > 53 ? 40 : 30;
+  const border = Array(borderLength).fill('=').join('');
+
   console.log(
-    `\n\t${colours.releaseBorder(
-      '=============================='
-    )}\n\t${trainerName} sent out ${colour(
+    `\n\t${colours.releaseBorder(border)}\n\t${trainerName} sent out ${colour(
       pokemon.name
-    )}!\n\t${colours.releaseBorder('==============================')}`
+    )}!\n\t${colours.releaseBorder(border)}`
   );
 };
 

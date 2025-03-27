@@ -12,6 +12,7 @@ const {
   catchPokemonForTrainer,
   computerTeamSelection,
   computerReleasePokemon,
+  selectComputerName,
   releaseLog,
   fightLog,
   trainerCardLog,
@@ -23,6 +24,7 @@ const {
   pokemon,
 } = require('./data-files/game-data');
 const { pokeballRed, generalText } = require('./data-files/colours');
+const trainerNames = require('./data-files/trainer-names');
 
 let playerName;
 let player, computer;
@@ -54,8 +56,8 @@ const main = async () => {
   player.bag = playerPotions;
 
   // initialise computer
-  computer = new Trainer('Computer', true);
-  computer.belt = computerTeamSelection(computerPokeballs, pokemon);
+  computer = new Trainer(selectComputerName(trainerNames), true);
+  computer.belt = computerTeamSelection(computerPokeballs, pokemon); //! length of release log border needs to depend on name + pokemon name etc length
 
   // initialise battle and add selected pokemon to fight
   battle = new Battle(player, computer);

@@ -40,6 +40,18 @@ describe('releaseLog()', () => {
       )}!\n\t${colours.releaseBorder('==============================')}`
     );
   });
+  test('border length should be increased for longer trainer names', () => {
+    releaseLog(pokemon.eevee, 'Mystical Psychic Olympia');
+    const border = Array(40).fill('=').join('');
+
+    expect(consoleSpy).toHaveBeenCalledWith(
+      `\n\t${colours.releaseBorder(
+        border
+      )}\n\tMystical Psychic Olympia sent out ${colours.normalColour(
+        'Eevee'
+      )}!\n\t${colours.releaseBorder(border)}`
+    );
+  });
   test('should not mutate input pokemon object', () => {
     const computer = new Trainer('Ash', true);
     const inputCopy = { ...pokemon.eevee };
