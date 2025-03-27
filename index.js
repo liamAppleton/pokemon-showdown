@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const { Trainer, Battle } = require('./classes');
 const {
   getPlayerName,

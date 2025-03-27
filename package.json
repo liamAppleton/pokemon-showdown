@@ -1,8 +1,11 @@
 {
   "name": "poketerm",
   "version": "1.0.0",
-  "description": "",
+  "description": "A Pokémon-themed command-line battle game",
   "main": "index.js",
+  "bin": {
+    "poketerm": "./index.js"
+  },
   "scripts": {
     "test": "jest",
     "dev": "node index.js"
