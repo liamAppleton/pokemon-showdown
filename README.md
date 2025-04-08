@@ -10,6 +10,14 @@ Test your skills in this **Pokémon battler command line game**! Be sure to choo
 
 Run: **npx poketerm**
 
+Or clone down the repo: **git clone https://github.com/liamAppleton/pokemon-showdown.git**
+
+Install dependencies: **npm install**
+
+Access the directory: **cd pokemon-showdown**
+
+Finally: **npm run dev**
+
 Node v23.6.0 required to play
 
 ## About this project
